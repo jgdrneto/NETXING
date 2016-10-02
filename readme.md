@@ -6,7 +6,7 @@
 ### Jackson Rauup Silvestre Santos (Email: jacksonrauup@hotmail.com).
 
 ## **Professor:**
-### HANDERSON
+### Handerson Bezzera Medeiros
 
 
 ## **Descrição:**
@@ -14,6 +14,6 @@
 Projeto da segunda unidade da disciplina de Desenvolvimento Desktop no curso de BTI UFRN. O NetXing é uma plataforma de vídeos,séries e filmes, semelhante ao NETFLIX.
 
 
-### **Execução**
+## **Execução**
 
 * Ter o JAVA JRE instalado no computador
