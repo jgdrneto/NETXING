@@ -6,11 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.UsuarioDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.UsuarioDAO;
 import modelosBD.Usuario;
 
-public class Usuario_HibernateDAO implements UsuarioDAO{
+public class Usuario_HibernateDAO extends UsuarioDAO{
 	
 	Transaction transacao;
 	

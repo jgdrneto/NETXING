@@ -6,16 +6,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.VideoFavoritoDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.VideoFavoritoDAO;
-import modelosBD.VideoFavorito;
+import modelosBD.Videofavorito;
 
-public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
+public class VideoFavorito_HibernateDAO extends VideoFavoritoDAO{
 	
 	Transaction transacao;
 	
 	@Override
-	public void salvar(VideoFavorito VideoFavorito) {
+	public void salvar(Videofavorito videofavorito) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -23,7 +23,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 		
 			transacao = sessao.beginTransaction();
 			
-			sessao.save(VideoFavorito);
+			sessao.save(videofavorito);
 			
 			transacao.commit();
 			
@@ -39,7 +39,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 	}
 
 	@Override
-	public void deletar(VideoFavorito VideoFavorito) {
+	public void deletar(Videofavorito videofavorito) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -47,7 +47,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 		
 			transacao = sessao.beginTransaction();
 			
-			sessao.delete(VideoFavorito);
+			sessao.delete(videofavorito);
 			
 			transacao.commit();
 			
@@ -63,7 +63,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 	}
 
 	@Override
-	public void atualizar(VideoFavorito VideoFavorito) {
+	public void atualizar(Videofavorito videofavorito) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -71,7 +71,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 		
 			transacao = sessao.beginTransaction();
 			
-			sessao.update(VideoFavorito);
+			sessao.update(videofavorito);
 			
 			transacao.commit();
 			
@@ -88,7 +88,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 	}
 
 	@Override
-	public List<VideoFavorito> listaDeVideoFavorito() {
+	public List<Videofavorito> listaDeVideoFavorito() {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -96,7 +96,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 		
 			transacao = sessao.beginTransaction();
 			
-			return new ArrayList<VideoFavorito>(sessao.createQuery("FROM VideoFavorito").getResultList());
+			return new ArrayList<Videofavorito>(sessao.createQuery("FROM Videofavorito").getResultList());
 
 		}catch(Exception e){
 			
@@ -106,7 +106,7 @@ public class VideoFavorito_HibernateDAO implements VideoFavoritoDAO{
 			sessao.close();
 		}
 		
-		return new ArrayList<VideoFavorito>();
+		return new ArrayList<Videofavorito>();
 	}
 
 }

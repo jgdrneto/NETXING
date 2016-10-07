@@ -8,11 +8,13 @@
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/netxing</property>
         <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.useSSL">false</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
    	
     	<mapping class="modelosBD.Categoria"/>
-    	<mapping class="modelosBD.SerieFavorita"/>
-    	<mapping class="modelosBD.VideoFavorito"/>
+    	<mapping class="modelosBD.Seriefavorita"/>
+    	<mapping class="modelosBD.Videofavorito"/>
     	<mapping class="modelosBD.Serie"/>
     	<mapping class="modelosBD.Usuario"/>
     	<mapping class="modelosBD.Video"/>

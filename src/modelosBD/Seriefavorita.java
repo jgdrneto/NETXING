@@ -1,5 +1,5 @@
 package modelosBD;
-// Generated 02/10/2016 11:46:09 by Hibernate Tools 5.1.0.Beta1
+// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,16 +16,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "SERIEFAVORITA", catalog = "netxing")
-public class SerieFavorita implements java.io.Serializable {
+public class Seriefavorita implements java.io.Serializable {
 
 	private Integer idSerieFavorita;
 	private Serie serie;
 	private Usuario usuario;
 
-	public SerieFavorita() {
+	public Seriefavorita() {
 	}
 
-	public SerieFavorita(Serie serie, Usuario usuario) {
+	public Seriefavorita(Serie serie, Usuario usuario) {
 		this.serie = serie;
 		this.usuario = usuario;
 	}

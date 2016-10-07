@@ -1,5 +1,5 @@
 package modelosBD;
-// Generated 02/10/2016 11:46:09 by Hibernate Tools 5.1.0.Beta1
+// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class Serie implements java.io.Serializable {
 	private Integer idSerie;
 	private String nome;
 	private Set<Video> videos = new HashSet<Video>(0);
-	private Set<SerieFavorita> seriefavoritas = new HashSet<SerieFavorita>(0);
+	private Set<Seriefavorita> seriefavoritas = new HashSet<Seriefavorita>(0);
 
 	public Serie() {
 	}
@@ -31,7 +31,7 @@ public class Serie implements java.io.Serializable {
 		this.nome = nome;
 	}
 
-	public Serie(String nome, Set<Video> videos, Set<SerieFavorita> seriefavoritas) {
+	public Serie(String nome, Set<Video> videos, Set<Seriefavorita> seriefavoritas) {
 		this.nome = nome;
 		this.videos = videos;
 		this.seriefavoritas = seriefavoritas;
@@ -68,11 +68,11 @@ public class Serie implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "serie")
-	public Set<SerieFavorita> getSeriefavoritas() {
+	public Set<Seriefavorita> getSeriefavoritas() {
 		return this.seriefavoritas;
 	}
 
-	public void setSeriefavoritas(Set<SerieFavorita> seriefavoritas) {
+	public void setSeriefavoritas(Set<Seriefavorita> seriefavoritas) {
 		this.seriefavoritas = seriefavoritas;
 	}
 

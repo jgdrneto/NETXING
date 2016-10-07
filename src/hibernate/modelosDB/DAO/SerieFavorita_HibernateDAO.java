@@ -6,16 +6,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.SerieFavoritaDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.SerieFavoritaDAO;
-import modelosBD.SerieFavorita;
+import modelosBD.Seriefavorita;
 
-public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
+public class SerieFavorita_HibernateDAO extends SerieFavoritaDAO{
 	
 	Transaction transacao;
 	
 	@Override
-	public void salvar(SerieFavorita SerieFavorita) {
+	public void salvar(Seriefavorita SerieFavorita) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -39,7 +39,7 @@ public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
 	}
 
 	@Override
-	public void deletar(SerieFavorita SerieFavorita) {
+	public void deletar(Seriefavorita SerieFavorita) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -63,7 +63,7 @@ public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
 	}
 
 	@Override
-	public void atualizar(SerieFavorita SerieFavorita) {
+	public void atualizar(Seriefavorita SerieFavorita) {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -88,7 +88,7 @@ public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
 	}
 
 	@Override
-	public List<SerieFavorita> listaDeSerieFavorita() {
+	public List<Seriefavorita> listaDeSerieFavorita() {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
@@ -96,7 +96,7 @@ public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
 		
 			transacao = sessao.beginTransaction();
 			
-			return new ArrayList<SerieFavorita>(sessao.createQuery("FROM SerieFavorita").getResultList());
+			return new ArrayList<Seriefavorita>(sessao.createQuery("FROM Seriefavorita").getResultList());
 
 		}catch(Exception e){
 			
@@ -106,7 +106,7 @@ public class SerieFavorita_HibernateDAO implements SerieFavoritaDAO{
 			sessao.close();
 		}
 		
-		return new ArrayList<SerieFavorita>();
+		return new ArrayList<Seriefavorita>();
 	}
 
 }

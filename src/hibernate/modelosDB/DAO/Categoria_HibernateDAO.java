@@ -6,11 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.CategoriaDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.CategoriaDAO;
 import modelosBD.Categoria;
 
-public class Categoria_HibernateDAO implements CategoriaDAO{
+public class Categoria_HibernateDAO extends CategoriaDAO{
 	
 	Transaction transacao;
 	

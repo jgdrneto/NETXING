@@ -1,5 +1,5 @@
 package modelosBD;
-// Generated 02/10/2016 11:46:09 by Hibernate Tools 5.1.0.Beta1
+// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,20 +31,25 @@ public class Video implements java.io.Serializable {
 	private String atorPrincipal;
 	private int faixaEtaria;
 	private String temporada;
-	private Set<VideoFavorito> videofavoritos = new HashSet<VideoFavorito>(0);
+	private byte[] arquivoVideo;
+	private String extensao;
+	private Set<Videofavorito> videofavoritos = new HashSet<Videofavorito>(0);
 
 	public Video() {
 	}
 
-	public Video(Categoria categoria, Serie serie, String nome, int faixaEtaria) {
+	public Video(Categoria categoria, Serie serie, String nome, int faixaEtaria, byte[] arquivoVideo, String extensao) {
 		this.categoria = categoria;
 		this.serie = serie;
 		this.nome = nome;
 		this.faixaEtaria = faixaEtaria;
+		this.arquivoVideo = arquivoVideo;
+		this.extensao = extensao;
 	}
 
 	public Video(Categoria categoria, Serie serie, String nome, String descricao, Integer ano, String diretor,
-			String atorPrincipal, int faixaEtaria, String temporada, Set<VideoFavorito> videofavoritos) {
+			String atorPrincipal, int faixaEtaria, String temporada, byte[] arquivoVideo, String extensao,
+			Set<Videofavorito> videofavoritos) {
 		this.categoria = categoria;
 		this.serie = serie;
 		this.nome = nome;
@@ -54,6 +59,8 @@ public class Video implements java.io.Serializable {
 		this.atorPrincipal = atorPrincipal;
 		this.faixaEtaria = faixaEtaria;
 		this.temporada = temporada;
+		this.arquivoVideo = arquivoVideo;
+		this.extensao = extensao;
 		this.videofavoritos = videofavoritos;
 	}
 
@@ -152,12 +159,30 @@ public class Video implements java.io.Serializable {
 		this.temporada = temporada;
 	}
 
+	@Column(name = "arquivoVideo", nullable = false)
+	public byte[] getArquivoVideo() {
+		return this.arquivoVideo;
+	}
+
+	public void setArquivoVideo(byte[] arquivoVideo) {
+		this.arquivoVideo = arquivoVideo;
+	}
+
+	@Column(name = "extensao", nullable = false, length = 45)
+	public String getExtensao() {
+		return this.extensao;
+	}
+
+	public void setExtensao(String extensao) {
+		this.extensao = extensao;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "video")
-	public Set<VideoFavorito> getVideofavoritos() {
+	public Set<Videofavorito> getVideofavoritos() {
 		return this.videofavoritos;
 	}
 
-	public void setVideofavoritos(Set<VideoFavorito> videofavoritos) {
+	public void setVideofavoritos(Set<Videofavorito> videofavoritos) {
 		this.videofavoritos = videofavoritos;
 	}
 

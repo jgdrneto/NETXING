@@ -6,11 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.VideoDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.VideoDAO;
 import modelosBD.Video;
 
-public class Video_HibernateDAO implements VideoDAO{
+public class Video_HibernateDAO extends VideoDAO{
 	
 	Transaction transacao;
 	

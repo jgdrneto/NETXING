@@ -6,11 +6,11 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import classesAbstratas.SerieDAO;
 import hibernate.conexao.HibernateUtil;
-import interfaces.SerieDAO;
 import modelosBD.Serie;
 
-public class Serie_HibernateDAO implements SerieDAO{
+public class Serie_HibernateDAO extends SerieDAO{
 	
 	Transaction transacao;
 	

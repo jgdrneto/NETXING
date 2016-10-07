@@ -1,5 +1,5 @@
 package modelosBD;
-// Generated 02/10/2016 11:46:09 by Hibernate Tools 5.1.0.Beta1
+// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +21,8 @@ public class Usuario implements java.io.Serializable {
 	private String login;
 	private String senha;
 	private int idade;
-	private Set<SerieFavorita> seriefavoritas = new HashSet<SerieFavorita>(0);
-	private Set<VideoFavorito> videofavoritos = new HashSet<VideoFavorito>(0);
+	private Set<Seriefavorita> seriefavoritas = new HashSet<Seriefavorita>(0);
+	private Set<Videofavorito> videofavoritos = new HashSet<Videofavorito>(0);
 
 	public Usuario() {
 	}
@@ -34,8 +34,8 @@ public class Usuario implements java.io.Serializable {
 		this.idade = idade;
 	}
 
-	public Usuario(int idUsuario, String login, String senha, int idade, Set<SerieFavorita> seriefavoritas,
-			Set<VideoFavorito> videofavoritos) {
+	public Usuario(int idUsuario, String login, String senha, int idade, Set<Seriefavorita> seriefavoritas,
+			Set<Videofavorito> videofavoritos) {
 		this.idUsuario = idUsuario;
 		this.login = login;
 		this.senha = senha;
@@ -83,20 +83,20 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	public Set<SerieFavorita> getSeriefavoritas() {
+	public Set<Seriefavorita> getSeriefavoritas() {
 		return this.seriefavoritas;
 	}
 
-	public void setSeriefavoritas(Set<SerieFavorita> seriefavoritas) {
+	public void setSeriefavoritas(Set<Seriefavorita> seriefavoritas) {
 		this.seriefavoritas = seriefavoritas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	public Set<VideoFavorito> getVideofavoritos() {
+	public Set<Videofavorito> getVideofavoritos() {
 		return this.videofavoritos;
 	}
 
-	public void setVideofavoritos(Set<VideoFavorito> videofavoritos) {
+	public void setVideofavoritos(Set<Videofavorito> videofavoritos) {
 		this.videofavoritos = videofavoritos;
 	}
 
