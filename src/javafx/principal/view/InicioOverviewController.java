@@ -10,6 +10,7 @@ import javafx.principal.Principal;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import projeto.dao.DAO_HIB;
 import projeto.modelos.Usuario;
@@ -45,11 +46,6 @@ public class InicioOverviewController {
 		
 		for(Usuario u : DAO_HIB.USUARIO.listaDeUsuarios()){
 			
-			System.out.println("Login:" + u.getLogin() + " Senha: " + u.getSenha());
-			
-			System.out.println("Texto no login: " + textoLogin.getText());
-			System.out.println("Texto na senha: " + textoSenha.getText());
-			
 			if(u.getLogin().equals(textoLogin.getText()) && u.getSenha().equals(textoSenha.getText())){
 				usuarioDigitado = u;
 			}
@@ -59,20 +55,27 @@ public class InicioOverviewController {
 			if(usuarioDigitado.getIdUsuario()==1){
 				try {
 					
-					FXMLLoader loader = new FXMLLoader();
-			        loader.setLocation(AdmOverviewController.class.getResource("AdmOverview.fxml"));
-			        AnchorPane page;
-			        
-					page = (AnchorPane) loader.load();
-					
 					// Cria o palco stage.
 			        Stage stage = new Stage();
 			        stage.setTitle("Adminstrador");
-			   
-			        Scene scene = new Scene(page);
+					
+			        //-----------------------------------------------------------------------
+			        
+			        FXMLLoader loader = new FXMLLoader();
+			        loader.setLocation(AdmOverviewController.class.getResource("AdmRootLayout.fxml"));
+			        BorderPane rootLayout = (BorderPane) loader.load();
+			        
+			        Scene scene = new Scene(rootLayout);
 			        stage.setScene(scene);
 			        
+			        //-----------------------------------------------------------------------
+			        loader = new FXMLLoader();
+			        loader.setLocation(AdmOverviewController.class.getResource("AdmOverview.fxml"));
+			        AnchorPane page = (AnchorPane) loader.load();
 			        
+			        rootLayout.setCenter(page);
+			        
+			        //-----------------------------------------------------------------------
 			        // Define a pessoa no controller.
 			        AdmOverviewController controller = loader.getController();
 			        controller.setPrincipal(principal);
