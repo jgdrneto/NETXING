@@ -12,11 +12,11 @@
         <property name="hibernate.connection.autoReconnect">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
    	
-    	<mapping class="modelosBD.Categoria"/>
-    	<mapping class="modelosBD.Seriefavorita"/>
-    	<mapping class="modelosBD.Videofavorito"/>
-    	<mapping class="modelosBD.Serie"/>
-    	<mapping class="modelosBD.Usuario"/>
-    	<mapping class="modelosBD.Video"/>
+    	<mapping class="projeto.modelos.Categoria"/>
+    	<mapping class="projeto.modelos.Seriefavorita"/>
+    	<mapping class="projeto.modelos.Videofavorito"/>
+    	<mapping class="projeto.modelos.Serie"/>
+    	<mapping class="projeto.modelos.Usuario"/>
+    	<mapping class="projeto.modelos.Video"/>
     	</session-factory>
 </hibernate-configuration>
