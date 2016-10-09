@@ -10,12 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import projeto.dao.CategoriaDAO;
-import projeto.dao.SerieDAO;
-import projeto.dao.SerieFavoritaDAO;
-import projeto.dao.UsuarioDAO;
-import projeto.dao.VideoDAO;
-import projeto.dao.VideoFavoritoDAO;
 
 
 public class Principal extends Application {
