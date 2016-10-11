@@ -84,56 +84,44 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutY="77.0" prefHeight="144.0" prefWidth="529.0">
+                  <TableView layoutY="42.0" prefHeight="144.0" prefWidth="529.0">
                     <columns>
                       <TableColumn prefWidth="175.0" text="Nome" />
                       <TableColumn prefWidth="160.0" text="Categoria" />
                         <TableColumn prefWidth="193.0" text="Ano" />
                     </columns>
                   </TableView>
-                  <TableView layoutY="262.0" prefHeight="144.0" prefWidth="529.0">
+                  <TableView layoutY="227.0" prefHeight="144.0" prefWidth="529.0">
                     <columns>
                       <TableColumn prefWidth="295.0" text="Nome" />
                         <TableColumn prefWidth="233.0" text="Temporada" />
                     </columns>
                   </TableView>
-                  <TableView layoutY="453.0" prefHeight="144.0" prefWidth="529.0">
+                  <TableView layoutY="418.0" prefHeight="144.0" prefWidth="529.0">
                     <columns>
                       <TableColumn prefWidth="199.0" text="Nome" />
                       <TableColumn prefWidth="152.0" text="Descrição" />
                         <TableColumn prefWidth="177.0" text="Categoria" />
                     </columns>
                   </TableView>
-                  <Label layoutX="14.0" layoutY="48.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="14.0">
+                  <Label layoutX="282.0" layoutY="15.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="282.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="231.0" text="Séries mais assistidas" AnchorPane.leftAnchor="14.0">
+                  <Label layoutX="284.0" layoutY="198.0" text="Séries mais assistidas" AnchorPane.leftAnchor="284.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="419.0" text="Vídeos mais assistidos" AnchorPane.leftAnchor="14.0">
+                  <Label layoutX="281.0" layoutY="386.0" text="Vídeos mais assistidos" AnchorPane.leftAnchor="281.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="13.0" layoutY="14.0" prefHeight="25.0" prefWidth="256.0" promptText="Pesquisar" AnchorPane.leftAnchor="14.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <ImageView fitHeight="59.0" fitWidth="83.0" layoutX="448.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../arquivosDoProjeto/Imagens/profile-user-outline-icon.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="321.0" layoutY="30.0" text="Nome do usuario">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Label>
+                  <TextField layoutX="21.0" layoutY="12.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField layoutX="21.0" layoutY="195.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField layoutX="21.0" layoutY="383.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
                </children>
             </AnchorPane>
         </items>
