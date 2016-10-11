@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.23782234957020057" layoutY="-2.0" prefHeight="600.0" prefWidth="700.0">
@@ -89,21 +88,20 @@
                     <columns>
                       <TableColumn prefWidth="175.0" text="Nome" />
                       <TableColumn prefWidth="160.0" text="Categoria" />
-                        <TableColumn prefWidth="193.0" text="Autor" />
+                        <TableColumn prefWidth="193.0" text="Ano" />
                     </columns>
                   </TableView>
                   <TableView layoutY="262.0" prefHeight="144.0" prefWidth="529.0">
                     <columns>
-                      <TableColumn prefWidth="186.0" text="Nome" />
-                      <TableColumn prefWidth="173.0" text="Categoria" />
-                        <TableColumn prefWidth="169.0" text="Temporada" />
+                      <TableColumn prefWidth="295.0" text="Nome" />
+                        <TableColumn prefWidth="233.0" text="Temporada" />
                     </columns>
                   </TableView>
                   <TableView layoutY="453.0" prefHeight="144.0" prefWidth="529.0">
                     <columns>
                       <TableColumn prefWidth="199.0" text="Nome" />
                       <TableColumn prefWidth="152.0" text="Descrição" />
-                        <TableColumn prefWidth="177.0" text="Autor" />
+                        <TableColumn prefWidth="177.0" text="Categoria" />
                     </columns>
                   </TableView>
                   <Label layoutX="14.0" layoutY="48.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="14.0">
