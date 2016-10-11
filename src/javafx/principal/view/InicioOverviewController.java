@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.principal.Principal;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -25,7 +28,7 @@ public class InicioOverviewController {
 	private TextField textoLogin;
 	
 	@FXML
-	private TextField textoSenha;
+	private PasswordField textoSenha;
 	
 	
 	/**
@@ -53,51 +56,76 @@ public class InicioOverviewController {
 		
 		if(usuarioDigitado!=null){
 			if(usuarioDigitado.getIdUsuario()==1){
-				try {
-					
-					// Cria o palco stage.
-			        Stage stage = new Stage();
-			        stage.setTitle("Adminstrador");
-					
-			        //-----------------------------------------------------------------------
-			        
-			        FXMLLoader loader = new FXMLLoader();
-			        loader.setLocation(AdmOverviewController.class.getResource("AdmRootLayout.fxml"));
-			        BorderPane rootLayout = (BorderPane) loader.load();
-			        
-			        Scene scene = new Scene(rootLayout);
-			        stage.setScene(scene);
-			        
-			        //-----------------------------------------------------------------------
-			        loader = new FXMLLoader();
-			        loader.setLocation(AdmOverviewController.class.getResource("AdmOverview.fxml"));
-			        AnchorPane page = (AnchorPane) loader.load();
-			        
-			        rootLayout.setCenter(page);
-			        
-			        //-----------------------------------------------------------------------
-			        // Define a pessoa no controller.
-			        AdmOverviewController controller = loader.getController();
-			        controller.setPrincipal(principal);
-			        controller.setUsuario(usuarioDigitado);
-					
-			        // Mostra a janela de administrador
-			        stage.show();
-			        
-			        //Fechando tela de login
-			        principal.getPrimaryStage().close();
-			        
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+				iniciarTelaAdministrador(usuarioDigitado);
 				
 			}else{
-				System.out.println("Erro de autenticação");
+				iniciarTelaUsuario(usuarioDigitado);
 			}
 		}else{
-			//Tela de usuário
+			//Tela de alerta para se usar caso a autenticação der errado
+			alerta();
 		}
+	}
+	
+	public void alerta(){
+		  Alert alert = new Alert(AlertType.WARNING);
+          alert.setTitle("Erro no login");
+          alert.setHeaderText("Usuário e/ou senha incorretos");
+          alert.setContentText("Por favor, digite login e senha válidos");
+          
+          //Zerando so componentes
+          textoLogin.setText("");
+          textoSenha.setText("");
+          
+          textoLogin.requestFocus();
+          
+          alert.showAndWait();
+	}
+	
+	public void iniciarTelaAdministrador(Usuario adm){
+		try {
+			// Cria o palco stage.
+	        Stage stage = new Stage();
+	        stage.setTitle("Adminstrador");
+			
+	        //-----------------------------------------------------------------------
+	        FXMLLoader loaderAnchor = new FXMLLoader();
+	        loaderAnchor.setLocation(AdmOverviewController.class.getResource("AdmOverview.fxml"));
+	        AnchorPane page = (AnchorPane) loaderAnchor.load();
+	        
+	        //-----------------------------------------------------------------------
+	        FXMLLoader loaderBorder = new FXMLLoader();
+	        loaderBorder.setLocation(AdmOverviewController.class.getResource("AdmRootLayout.fxml"));
+	        BorderPane rootLayout = (BorderPane) loaderBorder.load();
+	        
+	        rootLayout.setPrefSize(page.getPrefWidth(), page.getPrefHeight());
+	        
+	        rootLayout.setCenter(page);
+	        
+	        Scene scene = new Scene(rootLayout);
+	        stage.setScene(scene);
+	        
+	        //-----------------------------------------------------------------------
+	        // Define a pessoa no controller.
+	        AdmOverviewController controller = loaderAnchor.getController();	        
+	        controller.setPrincipal(principal);
+	        controller.setUsuario(adm);
+			
+	        // Mostra a janela de administrador
+	        stage.show();
+	        
+	        //Fechando tela de login
+	        principal.getPrimaryStage().close();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void iniciarTelaUsuario(Usuario usuario){
+		//Implementar lógica
 	}
 	
 	/**
@@ -112,7 +140,7 @@ public class InicioOverviewController {
     
     @FXML
     private void initialize() {
-    	
+    	//Nada a se inicializar
     }
 	
 }

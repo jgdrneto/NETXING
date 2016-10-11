@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,7 +31,7 @@
                         <Insets top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="textoSenha" prefWidth="120.0" />
+                  <PasswordField fx:id="textoSenha" prefWidth="120.0" />
                </children>
             </HBox>
          </children>

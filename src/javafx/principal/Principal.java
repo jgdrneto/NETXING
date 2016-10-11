@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-
 public class Principal extends Application {
 	
 	private Stage primaryStage;
@@ -26,26 +25,26 @@ public class Principal extends Application {
 		
 	public void showInicioOverview(){ 
 		 try {
-	            // Carrega o inicio overview.
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(Principal.class.getResource("view/InicioOverview.fxml"));
-	            AnchorPane inicioOverview = (AnchorPane) loader.load();
+			 // Carrega o inicio overview.
+	         FXMLLoader loader = new FXMLLoader();
+	         loader.setLocation(Principal.class.getResource("view/InicioOverview.fxml"));
+	         AnchorPane inicioOverview = (AnchorPane) loader.load();
 	            
-	            rootLayout = new BorderPane();
+	         rootLayout = new BorderPane();
 	            
-	            rootLayout.setPrefSize(inicioOverview.getPrefWidth(), inicioOverview.getPrefHeight());
+	         rootLayout.setPrefSize(inicioOverview.getPrefWidth(), inicioOverview.getPrefHeight());
 	            
-	            // Define o inicio overview dentro do root layout.
-	            rootLayout.setCenter(inicioOverview);
+	         // Define o inicio overview dentro do root layout.
+	         rootLayout.setCenter(inicioOverview);
 	            
 	            
-	            // Dá ao controlador acesso à the main app.
-	            InicioOverviewController controller = loader.getController();
-	            controller.setPrincipal(this);
+	         // Dá ao controlador acesso à the main app.
+	         InicioOverviewController controller = loader.getController();
+	         controller.setPrincipal(this);
 	            
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+		 } catch (IOException e) {
+			 e.printStackTrace();
+	     }
 	}
 	
 	@Override

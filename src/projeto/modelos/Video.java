@@ -68,7 +68,22 @@ public class Video implements java.io.Serializable {
 		this.extensao = extensao;
 		this.videofavoritos = videofavoritos;
 	}
-
+	
+	public Video(Categoria categoria, Serie serie, String nome, String descricao, Integer ano, String diretor,
+			String atorPrincipal, int faixaEtaria, String temporada, byte[] arquivoVideo, String extensao) {
+		this.categoria = categoria;
+		this.serie = serie;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.ano = ano;
+		this.diretor = diretor;
+		this.atorPrincipal = atorPrincipal;
+		this.faixaEtaria = faixaEtaria;
+		this.temporada = temporada;
+		this.arquivoVideo = arquivoVideo;
+		this.extensao = extensao;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
