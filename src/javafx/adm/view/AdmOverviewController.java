@@ -4,17 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.principal.Principal;
+import javafx.principal.view.InicioOverviewController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import projeto.dao.DAO_HIB;
 import projeto.modelos.Usuario;
 
 public class AdmOverviewController {
 	
-	Principal principal;
+	private InicioOverviewController telaLogin;
 	
-	Usuario usuario;
+	private Stage admStage;
+	
+	private Usuario usuario;
 	
 	//---------------------------------------------------------------------------
 	@FXML
@@ -73,9 +77,17 @@ public class AdmOverviewController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public void setPrincipal(Principal principal) {
-		this.principal = principal;
+	
+	public void setAdmStage(Stage nStage) {
+		this.admStage = nStage;
+	}
+	
+	public void setInicioOverviewController(InicioOverviewController controllerLogin) {
+		this.telaLogin = controllerLogin;
+	}
+	
+	public Stage getAdmStage(){
+		return this.admStage;
 	}
 	
 	 @FXML
@@ -95,4 +107,9 @@ public class AdmOverviewController {
 	     tb_Usuario.setItems(usuariosData);
 	     
 	 }
+
+
+	 
+	 //Comandos do RootLayout
+
 }

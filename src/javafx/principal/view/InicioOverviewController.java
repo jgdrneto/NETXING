@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javafx.adm.view.AdmOverviewController;
+import javafx.adm.view.AdmRootLayoutController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.principal.Principal;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.usuario.view.UsuarioOverviewController;
 import projeto.dao.DAO_HIB;
 import projeto.modelos.Usuario;
 
@@ -29,7 +31,6 @@ public class InicioOverviewController {
 	
 	@FXML
 	private PasswordField textoSenha;
-	
 	
 	/**
 	 * Chamado quando o usuário clica no botão de login.
@@ -62,6 +63,9 @@ public class InicioOverviewController {
 			}else{
 				iniciarTelaUsuario(usuarioDigitado);
 			}
+			
+	        //Fechando tela de login
+	        principal.getPrimaryStage().close();
 		}else{
 			//Tela de alerta para se usar caso a autenticação der errado
 			alerta();
@@ -107,16 +111,17 @@ public class InicioOverviewController {
 	        stage.setScene(scene);
 	        
 	        //-----------------------------------------------------------------------
-	        // Define a pessoa no controller.
+	        // Define o controlador para o ADM
 	        AdmOverviewController controller = loaderAnchor.getController();	        
-	        controller.setPrincipal(principal);
+	        controller.setInicioOverviewController(this);
 	        controller.setUsuario(adm);
-			
+			controller.setAdmStage(stage);
+	        
+	        AdmRootLayoutController rController = loaderBorder.getController();
+	        rController.setInicioOverviewController(this);
+	        rController.setAdmOverviewController(controller);
 	        // Mostra a janela de administrador
 	        stage.show();
-	        
-	        //Fechando tela de login
-	        principal.getPrimaryStage().close();
 	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -125,7 +130,28 @@ public class InicioOverviewController {
 	}
 	
 	public void iniciarTelaUsuario(Usuario usuario){
-		//Implementar lógica
+		
+        try {
+        	FXMLLoader loaderAnchor = new FXMLLoader();
+            loaderAnchor.setLocation(UsuarioOverviewController.class.getResource("UsuarioOverview.fxml"));
+			AnchorPane page = (AnchorPane) loaderAnchor.load();
+			
+			BorderPane layout = new BorderPane();
+	        layout.setCenter(page);
+	        
+	        Scene scene = new Scene(layout);
+	        Stage stage = new Stage();
+	        
+	        stage.setScene(scene);
+	        stage.setTitle("Usuário");
+	        
+	        stage.show();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 	}
 	
 	/**
@@ -138,9 +164,20 @@ public class InicioOverviewController {
 
     }
     
-    @FXML
+    public Principal getPrincipal() {
+		return principal;
+	}
+
+	@FXML
     private void initialize() {
     	//Nada a se inicializar
     }
 	
+    public void clear(){
+    	this.textoLogin.setText("");
+    	this.textoSenha.setText("");
+    	
+    	this.textoLogin.requestFocus();
+    }
+    
 }

@@ -103,7 +103,6 @@ CREATE TABLE IF NOT EXISTS `netxing`.`VIDEOFAVORITO` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `netxing`.`SERIEFAVORITA`
 -- -----------------------------------------------------
@@ -127,10 +126,13 @@ CREATE TABLE IF NOT EXISTS `netxing`.`SERIEFAVORITA` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Inserindo usuário de administrador
+-- Inserindo usuário de administrador e usuário de testes
 -- -----------------------------------------------------
 INSERT INTO USUARIO (login,senha, idade)
 VALUES ('adm','123', 50);
+
+INSERT INTO USUARIO (login,senha, idade)
+VALUES ('jackson','mani', 21);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

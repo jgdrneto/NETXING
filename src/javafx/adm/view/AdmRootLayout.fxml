@@ -5,21 +5,22 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.adm.view.AdmRootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Cadastrar">
             <items>
-              <MenuItem mnemonicParsing="false" text="Cadastrar Filme" />
-                  <MenuItem mnemonicParsing="false" text="Cadastrar Video" />
+              <MenuItem mnemonicParsing="false" text="Cadastrar Video" />
+                  <MenuItem mnemonicParsing="false" text="Cadastrar Categoria" />
                   <MenuItem mnemonicParsing="false" text="Cadastrar Serie" />
                   <MenuItem mnemonicParsing="false" text="Cadastrar Usuario" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Sobre">
+          <Menu mnemonicParsing="false" text="Opções">
             <items>
               <MenuItem mnemonicParsing="false" text="Sobre a NETXING" />
+                  <MenuItem mnemonicParsing="false" onAction="#logoff" text="Sair" />
             </items>
           </Menu>
         </menus>
