@@ -3,6 +3,7 @@ package javafx.adm.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.modelos.Video;
 import javafx.principal.Principal;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.control.TableColumn;
@@ -38,7 +39,7 @@ public class AdmOverviewController {
 	//---------------------------------------------------------------------------
 	
 	@FXML
-	private TableView<javafx.modelos.Usuario> tb_Usuario;
+	private TableView<javafx.modelos.Usuario> tb_Usuarios;
 	
 	@FXML
 	private TableColumn<javafx.modelos.Usuario, String> tb_Usuario_Login;
@@ -104,12 +105,61 @@ public class AdmOverviewController {
 	     //inicializando tabelas
 	     
 	     tb_Videos.setItems(videosData);
-	     tb_Usuario.setItems(usuariosData);
+	     tb_Usuarios.setItems(usuariosData);
 	     
 	 }
 
+	 //Pesquisar vídeos
+	 @FXML
+	 public void pesquisarVideos(){
+		 if(pesquisaVideos.getText().isEmpty()){
+			 tb_Videos.setItems(videosData);
+		 }else{
+			 tb_Videos.setItems(listaDePesquisaVideos());
+		 }
+	 }
 
-	 
-	 //Comandos do RootLayout
+	private ObservableList<Video> listaDePesquisaVideos() {
+		
+		String textoDigitado = pesquisaVideos.getText();
+		
+		ObservableList<Video> listaDePesquisa = FXCollections.observableArrayList();
+		
+		for(Video v : this.videosData){
+			if(v.getNome().contains(textoDigitado) 			||
+			   v.getCategoria().contains(textoDigitado)		||
+			   v.getAtorPrincipal().contains(textoDigitado)	||
+			   v.getSerie().contains(textoDigitado)			){
+				listaDePesquisa.add(v);
+			}
+		}
+		
+		return listaDePesquisa;
+	}
+	
+	//Pesquisar usuários
+	@FXML
+	public void pesquisarUsuarios(){
+		 if(pesquisaUsuario.getText().isEmpty()){
+			 tb_Usuarios.setItems(usuariosData);
+		 }else{
+			 tb_Usuarios.setItems(listaDePesquisaUsuarios());
+		 }
+	}
 
+	private ObservableList<javafx.modelos.Usuario> listaDePesquisaUsuarios() {
+		
+		String textoDigitado = pesquisaUsuario.getText();
+		
+		ObservableList<javafx.modelos.Usuario> listaDePesquisa = FXCollections.observableArrayList();
+		
+		for(javafx.modelos.Usuario u : usuariosData){
+			if(u.getLogin().startsWith(textoDigitado)){
+				listaDePesquisa.add(u);
+			}
+		}
+		
+		return listaDePesquisa;
+	}
+	
 }
