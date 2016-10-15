@@ -126,10 +126,10 @@ public class AdmOverviewController {
 		ObservableList<Video> listaDePesquisa = FXCollections.observableArrayList();
 		
 		for(Video v : this.videosData){
-			if(v.getNome().contains(textoDigitado) 			||
-			   v.getCategoria().contains(textoDigitado)		||
-			   v.getAtorPrincipal().contains(textoDigitado)	||
-			   v.getSerie().contains(textoDigitado)			){
+			if(v.getNome().startsWith(textoDigitado) 			||
+			   v.getCategoria().startsWith(textoDigitado)		||
+			   v.getAtorPrincipal().startsWith(textoDigitado)	||
+			   v.getSerie().startsWith(textoDigitado)				){
 				listaDePesquisa.add(v);
 			}
 		}
