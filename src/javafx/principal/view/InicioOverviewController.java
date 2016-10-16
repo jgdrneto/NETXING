@@ -116,13 +116,15 @@ public class InicioOverviewController {
 	        controller.setInicioOverviewController(this);
 	        controller.setUsuario(adm);
 			controller.setAdmStage(stage);
-	        
+			
 	        AdmRootLayoutController rController = loaderBorder.getController();
 	        rController.setInicioOverviewController(this);
 	        rController.setAdmOverviewController(controller);
 	        // Mostra a janela de administrador
 	        stage.show();
 	        
+	        //Iniciar com foco no textfield de pesquisa de videos
+	        controller.focoPesquisaVideos();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package javafx.adm.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.modelos.Video;
 import javafx.principal.Principal;
@@ -9,6 +10,8 @@ import javafx.principal.view.InicioOverviewController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import projeto.dao.DAO_HIB;
 import projeto.modelos.Usuario;
@@ -20,6 +23,15 @@ public class AdmOverviewController {
 	private Stage admStage;
 	
 	private Usuario usuario;
+	
+	//---------------------------------------------------------------------------
+	
+	@FXML
+	private TextField pesquisaVideos;
+		
+	@FXML
+	private TextField pesquisaUsuarios;
+		
 	
 	//---------------------------------------------------------------------------
 	@FXML
@@ -49,15 +61,6 @@ public class AdmOverviewController {
 	private ObservableList<javafx.modelos.Usuario> usuariosData;
 	
 	//---------------------------------------------------------------------------
-	
-	@FXML
-	private TextField pesquisaVideos;
-	
-	@FXML
-	private TextField pesquisaUsuario;
-	
-	//---------------------------------------------------------------------------
-	
 	
 	public AdmOverviewController(){
 		
@@ -91,33 +94,33 @@ public class AdmOverviewController {
 		return this.admStage;
 	}
 	
-	 @FXML
-	 private void initialize() {
-		 //Tabela videos
-		 tb_Video_Nome.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
-	     tb_Video_Ano.setCellValueFactory(cellData -> cellData.getValue().getAnoProperty());	
-	     tb_Video_Serie.setCellValueFactory(cellData -> cellData.getValue().getSerieProperty());
+	@FXML
+	private void initialize() {
+		//Tabela videos
+		tb_Video_Nome.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
+	    tb_Video_Ano.setCellValueFactory(cellData -> cellData.getValue().getAnoProperty());	
+	    tb_Video_Serie.setCellValueFactory(cellData -> cellData.getValue().getSerieProperty());
 	     
-	     //Tabela usuários
-	     tb_Usuario_Login.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
-	     tb_Usuario_Senha.setCellValueFactory(cellData -> cellData.getValue().getSenhaProperty());
+	    //Tabela usuários
+	    tb_Usuario_Login.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
+	    tb_Usuario_Senha.setCellValueFactory(cellData -> cellData.getValue().getSenhaProperty());
 	     
-	     //inicializando tabelas
+	    //inicializando tabelas
 	     
-	     tb_Videos.setItems(videosData);
-	     tb_Usuarios.setItems(usuariosData);
-	     
-	 }
+	    tb_Videos.setItems(videosData);
+	    tb_Usuarios.setItems(usuariosData);
+	    
+	}
 
-	 //Pesquisar vídeos
-	 @FXML
-	 public void pesquisarVideos(){
-		 if(pesquisaVideos.getText().isEmpty()){
-			 tb_Videos.setItems(videosData);
-		 }else{
-			 tb_Videos.setItems(listaDePesquisaVideos());
-		 }
-	 }
+	//Pesquisar vídeos
+	@FXML
+	public void pesquisarVideos(){
+		if(pesquisaVideos.getText().isEmpty()){
+			tb_Videos.setItems(videosData);
+		}else{
+			tb_Videos.setItems(listaDePesquisaVideos());
+		}
+	}
 
 	private ObservableList<Video> listaDePesquisaVideos() {
 		
@@ -140,7 +143,7 @@ public class AdmOverviewController {
 	//Pesquisar usuários
 	@FXML
 	public void pesquisarUsuarios(){
-		 if(pesquisaUsuario.getText().isEmpty()){
+		 if(pesquisaUsuarios.getText().isEmpty()){
 			 tb_Usuarios.setItems(usuariosData);
 		 }else{
 			 tb_Usuarios.setItems(listaDePesquisaUsuarios());
@@ -149,7 +152,7 @@ public class AdmOverviewController {
 
 	private ObservableList<javafx.modelos.Usuario> listaDePesquisaUsuarios() {
 		
-		String textoDigitado = pesquisaUsuario.getText();
+		String textoDigitado = pesquisaUsuarios.getText();
 		
 		ObservableList<javafx.modelos.Usuario> listaDePesquisa = FXCollections.observableArrayList();
 		
@@ -160,6 +163,26 @@ public class AdmOverviewController {
 		}
 		
 		return listaDePesquisa;
+	}
+	
+	public void focoPesquisaVideos(){
+		pesquisaVideos.requestFocus();
+	}
+	
+	@FXML
+	public void pressionarBotao(){
+		
+		tb_Videos.setOnKeyReleased(
+			new EventHandler<KeyEvent>() {
+
+	        @Override
+	        public void handle(KeyEvent arg0) {
+	            // TODO Auto-generated method stub
+	        	if(arg0.getCode()==KeyCode.C){
+	        		System.out.println("Imprimiu o C");	
+	        	}
+	        }
+	    });
 	}
 	
 }

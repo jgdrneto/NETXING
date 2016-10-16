@@ -24,5 +24,10 @@ public class AdmRootLayoutController {
 
 	public void setAdmOverviewController(AdmOverviewController controller) {
 		this.admController=controller;
-	} 
+	}
+	
+	@FXML
+	private void initialize() {
+		
+	}
 }
