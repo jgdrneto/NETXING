@@ -147,9 +147,9 @@ public class InicioOverviewController {
 	        stage.setScene(scene);
 	        stage.setTitle("Usuário");
 	        
-	        stage.show();
-	        
 	        stage.setResizable(false);
+	        
+	        stage.show();
 	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
