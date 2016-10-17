@@ -147,6 +147,8 @@ public class InicioOverviewController {
 	        stage.setScene(scene);
 	        stage.setTitle("Usuário");
 	        
+	        stage.setResizable(false);
+	        
 	        stage.show();
 	        
 		} catch (IOException e) {
