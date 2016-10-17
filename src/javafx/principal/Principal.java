@@ -57,6 +57,9 @@ public class Principal extends Application {
         
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
+        
+        primaryStage.setResizable(false);
+        
         primaryStage.show();
         
 	}
