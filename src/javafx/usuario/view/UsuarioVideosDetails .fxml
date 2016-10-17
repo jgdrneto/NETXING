@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,5 +10,10 @@
 <AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
    <children>
       <SplitPane layoutX="5.0" layoutY="5.0" prefHeight="590.0" prefWidth="690.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <Label layoutX="48.0" layoutY="24.0" text="NETXING">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
