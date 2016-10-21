@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.usuario.view.UsuarioOverviewController;
-import projeto.dao.DAO_HIB;
+import projeto.dao.DAO;
 import projeto.modelos.Usuario;
 
 public class InicioOverviewController {
@@ -48,7 +48,9 @@ public class InicioOverviewController {
 				
 		Usuario usuarioDigitado = null;
 		
-		for(Usuario u : DAO_HIB.USUARIO.listaDeUsuarios()){
+		List<Usuario> listaUsuario = DAO.ACAO.listar(projeto.modelos.Usuario.class);
+		
+		for(Usuario u : listaUsuario){
 			
 			if(u.getLogin().equals(textoLogin.getText()) && u.getSenha().equals(textoSenha.getText())){
 				usuarioDigitado = u;
@@ -113,8 +115,6 @@ public class InicioOverviewController {
 	        //-----------------------------------------------------------------------
 	        // Define o controlador para o ADM
 	        AdmOverviewController controller = loaderAnchor.getController();	        
-	        controller.setInicioOverviewController(this);
-	        controller.setUsuario(adm);
 			controller.setAdmStage(stage);
 			
 	        AdmRootLayoutController rController = loaderBorder.getController();

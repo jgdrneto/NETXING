@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import projeto.dao.DAO_HIB;
+import projeto.dao.DAO;
 
 public class Usuario{
 	private projeto.modelos.Usuario usuarioBD;
@@ -21,7 +21,7 @@ public class Usuario{
 		usuarioBD = new projeto.modelos.Usuario(login, senha, idade);
 		
 		//salva no banco de dados usando o hibernate 
-		DAO_HIB.USUARIO.salvar(usuarioBD);
+		DAO.ACAO.salvar(usuarioBD);
 	}
 	
 	public Usuario(projeto.modelos.Usuario nUsuario) {
@@ -36,7 +36,7 @@ public class Usuario{
 	public void setLogin(String nLogin) {
 		this.usuarioBD.setLogin(nLogin);
 		
-		DAO_HIB.USUARIO.atualizar(usuarioBD);
+		DAO.ACAO.atualizar(usuarioBD);
 		
 		this.login.set(nLogin);
 	}
@@ -44,7 +44,7 @@ public class Usuario{
 	public void setSenha(String nSenha) {
 		this.usuarioBD.setSenha(nSenha);
 		
-		DAO_HIB.USUARIO.atualizar(usuarioBD);
+		DAO.ACAO.atualizar(usuarioBD);
 		
 		this.senha.set(nSenha);
 	}
@@ -52,7 +52,7 @@ public class Usuario{
 	public void setIdade(Integer nIdade) {
 		this.usuarioBD.setIdade(nIdade);
 		
-		DAO_HIB.USUARIO.atualizar(usuarioBD);
+		DAO.ACAO.atualizar(usuarioBD);
 		
 		this.idade.set(nIdade);
 	}

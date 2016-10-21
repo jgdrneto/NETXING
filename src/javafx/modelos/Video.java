@@ -1,10 +1,12 @@
 package javafx.modelos;
 
+import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import projeto.dao.DAO_HIB;
+import projeto.dao.DAO;
 import projeto.modelos.Categoria;
 import projeto.modelos.Serie;
 
@@ -20,8 +22,8 @@ public class Video{
 	private StringProperty atorPrincipal;
 	private IntegerProperty faixaEtaria;
 	private StringProperty temporada;
-	private byte[] arquivoVideo;
-	private String extensao;
+	private String video;
+	private String imagem;
 	
 	//Objetos do banco de dados
 	private projeto.modelos.Video videoBD;
@@ -31,7 +33,7 @@ public class Video{
 	
 	public Video(String categoria, String serie, String nome, String descricao, Integer ano, 
 			String diretor, String atorPrincipal, Integer faixaEtaria,String temporada, 
-			byte[] arquivoVideo, String extensao) {
+			String arquivoVideo, String arquivoImagem) {
 		
 		this.categoria = new SimpleStringProperty(categoria);
 		this.serie =  new SimpleStringProperty(serie);
@@ -42,14 +44,14 @@ public class Video{
 		this.atorPrincipal = new SimpleStringProperty(atorPrincipal);
 		this.faixaEtaria = new SimpleIntegerProperty(faixaEtaria);
 		this.temporada = new SimpleStringProperty(temporada);
-		this.arquivoVideo = arquivoVideo;
-		this.extensao = extensao;
+		this.video = arquivoVideo;
+		this.imagem = arquivoImagem;
 		
 		categoriaBD = categoria(categoria);
 		
-		serieBD = serie(serie);
+		serieBD = serie(serie, arquivoImagem);
 				
-		videoBD = new projeto.modelos.Video(categoriaBD,serieBD,nome,descricao,ano,diretor,atorPrincipal,faixaEtaria,temporada,arquivoVideo,extensao);
+		videoBD = new projeto.modelos.Video(categoriaBD,serieBD,nome,descricao,ano,diretor,atorPrincipal,faixaEtaria,temporada,arquivoVideo,arquivoImagem);
 		
 	}
 	
@@ -65,30 +67,35 @@ public class Video{
 		this.atorPrincipal = new SimpleStringProperty(videoBD.getAtorPrincipal());
 		this.faixaEtaria = new SimpleIntegerProperty(videoBD.getFaixaEtaria());
 		this.temporada = new SimpleStringProperty(videoBD.getTemporada());
-		this.arquivoVideo = videoBD.getArquivoVideo();
-		this.extensao = videoBD.getExtensao();
+		this.video = videoBD.getVideo();
+		this.imagem = videoBD.getImagem();
 		
 		this.serieBD = videoBD.getSerie();
 		this.categoriaBD = videoBD.getCategoria();
 	}
 
-	private Serie serie(String serieNome) {
-		for(Serie s : DAO_HIB.SERIE.listaDeSeries()){
+	private Serie serie(String serieNome, String imagem) {
+		
+		List<Serie> listaSeries = DAO.ACAO.listar(projeto.modelos.Serie.class);
+		
+		for(Serie s : listaSeries){
 			if(s.getNome().equals(serieNome)){
 				return s;
 			}
 		}
 		
-		Serie s = new Serie(serieNome);
+		Serie s = new Serie(serieNome, imagem);
 		
-		DAO_HIB.SERIE.salvar(s);
+		DAO.ACAO.salvar(s);
 		
 		return s;
 	}
 
 	private Categoria categoria(String categoriaNome) {
 		
-		for(Categoria c : DAO_HIB.CATEGORIA.listaDeCategorias()){
+		List<Categoria> listaCategoria = DAO.ACAO.listar(Categoria.class);
+		
+		for(Categoria c : listaCategoria){
 			if(c.getNome().equals(categoriaNome)){
 				return c;
 			}
@@ -96,7 +103,7 @@ public class Video{
 		
 		Categoria c = new Categoria(categoriaNome);
 		
-		DAO_HIB.CATEGORIA.salvar(c);
+		DAO.ACAO.salvar(c);
 		
 		return c;
 	}
@@ -119,7 +126,7 @@ public class Video{
 	public void setCategoria(String categoria) {
 		this.categoriaBD.setNome(categoria);
 		
-		DAO_HIB.CATEGORIA.atualizar(categoriaBD);
+		DAO.ACAO.atualizar(categoriaBD);
 		
 		this.categoria.set(categoria);
 	}
@@ -135,7 +142,7 @@ public class Video{
 	public void setSerie(String serie) {
 		this.serieBD.setNome(serie);
 		
-		DAO_HIB.SERIE.atualizar(serieBD);
+		DAO.ACAO.atualizar(serieBD);
 		
 		this.serie.set(serie);
 	}
@@ -152,7 +159,7 @@ public class Video{
 		
 		videoBD.setNome(nome);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.nome.set(nome);
 	}
@@ -169,7 +176,7 @@ public class Video{
 	public void setDescricao(String descricao) {
 		videoBD.setDescricao(descricao);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.descricao.set(descricao);
 	}
@@ -185,7 +192,7 @@ public class Video{
 	public void setAno(Integer ano) {
 		videoBD.setAno(ano);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.ano.set(ano);
 	}
@@ -201,7 +208,7 @@ public class Video{
 	public void setDiretor(String diretor) {
 		videoBD.setDiretor(diretor);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.diretor.set(diretor);
 	}
@@ -218,7 +225,7 @@ public class Video{
 		
 		videoBD.setAtorPrincipal(atorPrincipal);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.atorPrincipal.set(atorPrincipal);
 	}
@@ -235,7 +242,7 @@ public class Video{
 		
 		videoBD.setFaixaEtaria(faixaEtaria);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.faixaEtaria.get();
 	}
@@ -252,36 +259,36 @@ public class Video{
 		
 		videoBD.setTemporada(temporada);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
 		this.temporada.set(temporada);
 	}
 
-	public byte[] getArquivoVideo() {
-		return arquivoVideo;
+	public String getVideo() {
+		return video;
 	}
 
-	public void setArquivoVideo(byte[] arquivoVideo) {
+	public void setArquivoVideo(String arquivoVideo) {
 		
-		videoBD.setArquivoVideo(arquivoVideo);
+		videoBD.setVideo(arquivoVideo);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
-		this.arquivoVideo = arquivoVideo;
+		this.video = arquivoVideo;
 	}
 
-	public String getExtensao() {
-		return extensao;
+	public String getImagem() {
+		return imagem;
 	}
 
 
-	public void setExtensao(String extensao) {
+	public void setImagem(String arquivoImagem) {
 		
-		videoBD.setExtensao(extensao);
+		videoBD.setImagem(arquivoImagem);
 		
-		DAO_HIB.VIDEO.atualizar(videoBD);
+		DAO.ACAO.atualizar(videoBD);
 		
-		this.extensao = extensao;
+		this.imagem = arquivoImagem;
 	}
 
 }

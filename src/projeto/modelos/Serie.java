@@ -1,5 +1,5 @@
 package projeto.modelos;
-// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
+// Generated 20/10/2016 21:44:55 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,25 +19,23 @@ import javax.persistence.Table;
 @Table(name = "SERIE", catalog = "netxing")
 public class Serie implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private Integer idSerie;
 	private String nome;
+	private String imagem;
 	private Set<Video> videos = new HashSet<Video>(0);
 	private Set<Seriefavorita> seriefavoritas = new HashSet<Seriefavorita>(0);
 
 	public Serie() {
 	}
 
-	public Serie(String nome) {
+	public Serie(String nome, String imagem) {
 		this.nome = nome;
+		this.imagem = imagem;
 	}
 
-	public Serie(String nome, Set<Video> videos, Set<Seriefavorita> seriefavoritas) {
+	public Serie(String nome, String imagem, Set<Video> videos, Set<Seriefavorita> seriefavoritas) {
 		this.nome = nome;
+		this.imagem = imagem;
 		this.videos = videos;
 		this.seriefavoritas = seriefavoritas;
 	}
@@ -61,6 +59,15 @@ public class Serie implements java.io.Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Column(name = "imagem", nullable = false, length = 200)
+	public String getImagem() {
+		return this.imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "serie")

@@ -1,5 +1,5 @@
 package projeto.modelos;
-// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
+// Generated 20/10/2016 21:44:55 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,11 +21,6 @@ import javax.persistence.Table;
 @Table(name = "VIDEO", catalog = "netxing")
 public class Video implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private Integer idVideo;
 	private Categoria categoria;
 	private Serie serie;
@@ -36,25 +31,24 @@ public class Video implements java.io.Serializable {
 	private String atorPrincipal;
 	private int faixaEtaria;
 	private String temporada;
-	private byte[] arquivoVideo;
-	private String extensao;
+	private String video;
+	private String imagem;
 	private Set<Videofavorito> videofavoritos = new HashSet<Videofavorito>(0);
 
 	public Video() {
 	}
 
-	public Video(Categoria categoria, Serie serie, String nome, int faixaEtaria, byte[] arquivoVideo, String extensao) {
+	public Video(Categoria categoria, Serie serie, String nome, int faixaEtaria, String video, String imagem) {
 		this.categoria = categoria;
 		this.serie = serie;
 		this.nome = nome;
 		this.faixaEtaria = faixaEtaria;
-		this.arquivoVideo = arquivoVideo;
-		this.extensao = extensao;
+		this.video = video;
+		this.imagem = imagem;
 	}
 
 	public Video(Categoria categoria, Serie serie, String nome, String descricao, Integer ano, String diretor,
-			String atorPrincipal, int faixaEtaria, String temporada, byte[] arquivoVideo, String extensao,
-			Set<Videofavorito> videofavoritos) {
+			String atorPrincipal, int faixaEtaria, String temporada, String video, String imagem) {
 		this.categoria = categoria;
 		this.serie = serie;
 		this.nome = nome;
@@ -64,26 +58,11 @@ public class Video implements java.io.Serializable {
 		this.atorPrincipal = atorPrincipal;
 		this.faixaEtaria = faixaEtaria;
 		this.temporada = temporada;
-		this.arquivoVideo = arquivoVideo;
-		this.extensao = extensao;
+		this.video = video;
+		this.imagem = imagem;
 		this.videofavoritos = videofavoritos;
 	}
-	
-	public Video(Categoria categoria, Serie serie, String nome, String descricao, Integer ano, String diretor,
-			String atorPrincipal, int faixaEtaria, String temporada, byte[] arquivoVideo, String extensao) {
-		this.categoria = categoria;
-		this.serie = serie;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.ano = ano;
-		this.diretor = diretor;
-		this.atorPrincipal = atorPrincipal;
-		this.faixaEtaria = faixaEtaria;
-		this.temporada = temporada;
-		this.arquivoVideo = arquivoVideo;
-		this.extensao = extensao;
-	}
-	
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -179,22 +158,22 @@ public class Video implements java.io.Serializable {
 		this.temporada = temporada;
 	}
 
-	@Column(name = "arquivoVideo", nullable = false)
-	public byte[] getArquivoVideo() {
-		return this.arquivoVideo;
+	@Column(name = "Video", nullable = false, length = 200)
+	public String getVideo() {
+		return this.video;
 	}
 
-	public void setArquivoVideo(byte[] arquivoVideo) {
-		this.arquivoVideo = arquivoVideo;
+	public void setVideo(String video) {
+		this.video = video;
 	}
 
-	@Column(name = "extensao", nullable = false, length = 45)
-	public String getExtensao() {
-		return this.extensao;
+	@Column(name = "imagem", nullable = false, length = 200)
+	public String getImagem() {
+		return this.imagem;
 	}
 
-	public void setExtensao(String extensao) {
-		this.extensao = extensao;
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "video")

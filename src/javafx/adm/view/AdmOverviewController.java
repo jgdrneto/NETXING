@@ -1,28 +1,23 @@
 package javafx.adm.view;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.modelos.Video;
-import javafx.principal.Principal;
-import javafx.principal.view.InicioOverviewController;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import projeto.dao.DAO_HIB;
-import projeto.modelos.Usuario;
+import projeto.dao.DAO;
 
 public class AdmOverviewController {
 	
-	private InicioOverviewController telaLogin;
-	
 	private Stage admStage;
-	
-	private Usuario usuario;
 	
 	//---------------------------------------------------------------------------
 	
@@ -66,28 +61,22 @@ public class AdmOverviewController {
 		
 		usuariosData = FXCollections.observableArrayList();
 		
-		for(Usuario usuBD : DAO_HIB.USUARIO.listaDeUsuarios()){
+		List<projeto.modelos.Usuario> listaUsuarioBD = DAO.ACAO.listar(projeto.modelos.Usuario.class);
+		
+		for(projeto.modelos.Usuario usuBD : listaUsuarioBD){
 			usuariosData.add(new javafx.modelos.Usuario(usuBD));
 		}
 		
-		videosData = FXCollections.observableArrayList();
+		List<projeto.modelos.Video> listaVideosBD = DAO.ACAO.listar(projeto.modelos.Video.class);
 		
-		for(projeto.modelos.Video vidBD : DAO_HIB.VIDEO.listaDeVideos()){
+		for(projeto.modelos.Video vidBD : listaVideosBD){
 			videosData.add(new javafx.modelos.Video(vidBD));
 		}
 		
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 	public void setAdmStage(Stage nStage) {
 		this.admStage = nStage;
-	}
-	
-	public void setInicioOverviewController(InicioOverviewController controllerLogin) {
-		this.telaLogin = controllerLogin;
 	}
 	
 	public Stage getAdmStage(){

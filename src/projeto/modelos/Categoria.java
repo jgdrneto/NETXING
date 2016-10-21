@@ -1,5 +1,5 @@
 package projeto.modelos;
-// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
+// Generated 20/10/2016 21:44:55 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,11 +19,6 @@ import javax.persistence.Table;
 @Table(name = "CATEGORIA", catalog = "netxing")
 public class Categoria implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private Integer idCategoria;
 	private String nome;
 	private Set<Video> videos = new HashSet<Video>(0);

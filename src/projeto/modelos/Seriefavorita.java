@@ -1,5 +1,5 @@
 package projeto.modelos;
-// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
+// Generated 20/10/2016 21:44:55 by Hibernate Tools 5.1.0.Beta1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,11 +18,6 @@ import javax.persistence.Table;
 @Table(name = "SERIEFAVORITA", catalog = "netxing")
 public class Seriefavorita implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	private Integer idSerieFavorita;
 	private Serie serie;
 	private Usuario usuario;

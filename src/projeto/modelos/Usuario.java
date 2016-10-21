@@ -1,7 +1,5 @@
 package projeto.modelos;
-// Generated 07/10/2016 19:44:50 by Hibernate Tools 5.1.0.Beta1
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated 20/10/2016 21:44:55 by Hibernate Tools 5.1.0.Beta1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,12 +19,7 @@ import javax.persistence.Table;
 @Table(name = "USUARIO", catalog = "netxing")
 public class Usuario implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private int idUsuario;
+	private Integer idUsuario;
 	private String login;
 	private String senha;
 	private int idade;
@@ -52,13 +46,13 @@ public class Usuario implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	
+
 	@Column(name = "idUsuario", unique = true, nullable = false)
-	public int getIdUsuario() {
+	public Integer getIdUsuario() {
 		return this.idUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
