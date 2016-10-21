@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.modelos.Usuario;
 import javafx.modelos.Video;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -52,6 +53,8 @@ public class AdmOverviewController {
 	private TableColumn<javafx.modelos.Usuario, String> tb_Usuario_Login;
 	@FXML
 	private TableColumn<javafx.modelos.Usuario, String> tb_Usuario_Senha;
+	@FXML
+	private TableColumn<javafx.modelos.Usuario, Number> tb_Usuario_Idade;
 	
 	private ObservableList<javafx.modelos.Usuario> usuariosData;
 	
@@ -93,14 +96,14 @@ public class AdmOverviewController {
 	    //Tabela usuários
 	    tb_Usuario_Login.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
 	    tb_Usuario_Senha.setCellValueFactory(cellData -> cellData.getValue().getSenhaProperty());
-	     
+	    tb_Usuario_Idade.setCellValueFactory(cellData -> cellData.getValue().getIdadeProperty());	  
 	    //inicializando tabelas
 	     
 	    tb_Videos.setItems(videosData);
 	    tb_Usuarios.setItems(usuariosData);
 	    
 	}
-
+	
 	//Pesquisar vídeos
 	@FXML
 	public void pesquisarVideos(){
@@ -158,6 +161,16 @@ public class AdmOverviewController {
 		pesquisaVideos.requestFocus();
 	}
 	
+	
+	
+	public ObservableList<javafx.modelos.Video> getVideosData() {
+		return videosData;
+	}
+
+	public ObservableList<javafx.modelos.Usuario> getUsuariosData() {
+		return usuariosData;
+	}
+
 	@FXML
 	public void pressionarBotao(){
 		

@@ -127,7 +127,15 @@ CREATE TABLE IF NOT EXISTS `netxing`.`SERIEFAVORITA` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Inserindo usuário de administrador e usuário de testes
+-- -----------------------------------------------------
+INSERT INTO USUARIO (login,senha, idade)
+VALUES ('adm','123', 50);
+
+INSERT INTO USUARIO (login,senha, idade)
+VALUES ('jackson','mani', 21);

@@ -37,7 +37,6 @@ public class Principal extends Application {
 	         // Define o inicio overview dentro do root layout.
 	         rootLayout.setCenter(inicioOverview);
 	         
-	            
 	         // Dá ao controlador acesso à the main app.
 	         InicioOverviewController controller = loader.getController();
 	         controller.setPrincipal(this);
