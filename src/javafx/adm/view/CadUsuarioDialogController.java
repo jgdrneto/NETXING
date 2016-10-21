@@ -3,6 +3,7 @@ package javafx.adm.view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.modelos.ControllerAdm;
 import javafx.modelos.Usuario;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -10,9 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class CadUsuarioDialogController {
-	
-	AdmOverviewController admController;
+public class CadUsuarioDialogController extends ControllerAdm{
 	
 	@FXML
 	private TextField login;
@@ -28,32 +27,17 @@ public class CadUsuarioDialogController {
 	
 	
 	ObservableList<Integer> idades = FXCollections.observableArrayList();
-	
-	private Stage dialogStage;
-	
-	 /**
-     * Define o palco deste dialog.
-     * 
-     * @param dialogStage
-     */
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-    
-    public void setAdmController(AdmOverviewController nAdmController){
-    	this.admController = nAdmController;
-    }
-    
+		    
     public void BotaoCancelar(){
-    	dialogStage.close();
+    	this.getStage().close();
     }
     
     public void BotaoSalvar(){
     	
     	if(validarOperacao()){
-    		admController.getUsuariosData().add(new Usuario(login.getText(), senha.getText(), idade.getValue()));
+    		this.getAdmController().getUsuariosData().add(new Usuario(login.getText(), senha.getText(), idade.getValue()));
     		
-    		dialogStage.close();
+    		this.getStage().close();
     	}
     	
     }
@@ -63,7 +47,7 @@ public class CadUsuarioDialogController {
     	if(senha.getText().equals(repetirSenha.getText()) && !senha.getText().equals("")){
     		if(idade.getValue()!=null){
     			if(!login.getText().equals("")){
-    				if(!contemUsuario(admController.getUsuariosData(), login.getText())){
+    				if(!contemUsuario(this.getAdmController().getUsuariosData(), login.getText())){
     					
     					return true;
     					

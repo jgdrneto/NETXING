@@ -13,7 +13,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Cadastrar Video" />
                   <MenuItem mnemonicParsing="false" text="Cadastrar Categoria" />
-                  <MenuItem mnemonicParsing="false" text="Cadastrar Serie" />
+                  <MenuItem mnemonicParsing="false" onAction="#cadastrarSerie" text="Cadastrar Serie" />
                   <MenuItem mnemonicParsing="false" onAction="#cadastrarUsuario" text="Cadastrar Usuario" />
             </items>
           </Menu>

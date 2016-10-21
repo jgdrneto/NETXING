@@ -1,9 +1,14 @@
 package javafx.adm.view;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.modelos.ControllerAdm;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -38,25 +43,25 @@ public class AdmRootLayoutController {
 		
 	}
 	
-	@FXML
-	private void cadastrarUsuario(){
-        try {
+	private <T extends ControllerAdm> void abrirDialog(String arquivoFXML, String titulo, T controller){
+		 try {
         	 // Carrega o arquivo fxml e cria um novo stage para a janela popup.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AdmRootLayoutController.class.getResource("CadUsuarioDialog.fxml"));
+            loader.setLocation(AdmRootLayoutController.class.getResource(arquivoFXML));
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
-	        dialogStage.setTitle("Cadastrar usuário");
+	        dialogStage.setTitle(titulo);
+	        dialogStage.setResizable(false);
 	        dialogStage.initModality(Modality.WINDOW_MODAL);
 	        dialogStage.initOwner(admController.getAdmStage());
 	        Scene scene = new Scene(page);
 	        dialogStage.setScene(scene);
+	       
+	        T controlador = loader.getController();
 	        
-	        CadUsuarioDialogController cadUsuarioControlador = loader.getController();
-	        
-	        cadUsuarioControlador.setAdmController(admController);
-	        cadUsuarioControlador.setDialogStage(dialogStage);
+	        controlador.setAdmController(admController);
+	        controlador.setStage(dialogStage);
 	        
 	        dialogStage.showAndWait();
 	        
@@ -65,4 +70,16 @@ public class AdmRootLayoutController {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	private void cadastrarUsuario(){
+       
+		abrirDialog("CadUsuarioDialog.fxml", "Cadastrar Usuário", new CadUsuarioDialogController());
+	}
+	
+	@FXML
+	private void cadastrarSerie(){
+       abrirDialog("CadSerieDialog.fxml", "Cadastrar Série", new CadSerieDialogController());
+	}
+	
 }
