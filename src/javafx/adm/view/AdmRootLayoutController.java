@@ -1,11 +1,10 @@
 package javafx.adm.view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 
+import javafx.adm.view.cadastrar.CadCategoriaDialogController;
+import javafx.adm.view.cadastrar.CadSerieDialogController;
+import javafx.adm.view.cadastrar.CadUsuarioDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.modelos.ControllerAdm;
@@ -47,7 +46,7 @@ public class AdmRootLayoutController {
 		 try {
         	 // Carrega o arquivo fxml e cria um novo stage para a janela popup.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AdmRootLayoutController.class.getResource(arquivoFXML));
+            loader.setLocation(AdmRootLayoutController.class.getResource("cadastrar/"+arquivoFXML));
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
@@ -60,6 +59,7 @@ public class AdmRootLayoutController {
 	       
 	        T controlador = loader.getController();
 	        
+	        controlador.setAdmRootLayoutController(this);
 	        controlador.setAdmController(admController);
 	        controlador.setStage(dialogStage);
 	        
@@ -72,14 +72,18 @@ public class AdmRootLayoutController {
 	}
 	
 	@FXML
-	private void cadastrarUsuario(){
-       
+	public void cadastrarUsuario(){
 		abrirDialog("CadUsuarioDialog.fxml", "Cadastrar Usuário", new CadUsuarioDialogController());
 	}
 	
 	@FXML
-	private void cadastrarSerie(){
+	public void cadastrarSerie(){
        abrirDialog("CadSerieDialog.fxml", "Cadastrar Série", new CadSerieDialogController());
+	}
+	
+	@FXML
+	public void cadastrarCategoria(){
+       abrirDialog("CadCategoriaDialog.fxml", "Cadastrar Categoria", new CadCategoriaDialogController());
 	}
 	
 }

@@ -1,24 +1,17 @@
-package javafx.adm.view;
+package javafx.adm.view.cadastrar;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.adm.view.AdmOverviewController;
 import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
-import javafx.modelos.Serie;
-import javafx.modelos.Usuario;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import projeto.dao.DAO;
 
 public class CadSerieDialogController extends ControllerAdm{
