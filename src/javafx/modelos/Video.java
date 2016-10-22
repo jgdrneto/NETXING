@@ -30,7 +30,6 @@ public class Video{
 	private projeto.modelos.Serie serieBD;
 	private projeto.modelos.Categoria categoriaBD;
 	
-	
 	public Video(String categoria, String serie, String nome, String descricao, Integer ano, 
 			String diretor, String atorPrincipal, Integer faixaEtaria,String temporada, 
 			String arquivoVideo, String arquivoImagem) {
@@ -291,4 +290,16 @@ public class Video{
 		this.imagem = arquivoImagem;
 	}
 
+	public projeto.modelos.Video getVideoBD() {
+		return videoBD;
+	}
+
+	public projeto.modelos.Serie getSerieBD() {
+		return serieBD;
+	}
+
+	public projeto.modelos.Categoria getCategoriaBD() {
+		return categoriaBD;
+	}
+	
 }

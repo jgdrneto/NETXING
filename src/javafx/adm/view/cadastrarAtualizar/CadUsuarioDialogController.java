@@ -1,4 +1,4 @@
-package javafx.adm.view.cadastrar;
+package javafx.adm.view.cadastrarAtualizar;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,23 +25,82 @@ public class CadUsuarioDialogController extends ControllerAdm{
 	private ChoiceBox<Integer> idade;
 	
 	
+	private javafx.modelos.Usuario usuario;
+	
 	ObservableList<Integer> idades = FXCollections.observableArrayList();
-		    
+	
+	@FXML	    
     public void BotaoCancelar(){
     	this.getStage().close();
     }
-    
+	
+    @FXML
     public void BotaoSalvar(){
+	 	
+    	switch(this.getAcao()){
+    		case CADASTRAR :
+    			cadastrar();
+    		break;
+    		case ATUALIZAR:
+    			atualizar();
+    		break;	
+    	}
     	
-    	if(validarOperacao()){
+    	this.getStage().close();
+    }
+    
+    private void atualizar() {
+		
+    	if(validarOperacaoAtualizar()){
+    		
+    		usuario.setLogin(login.getText());
+    		usuario.setSenha(senha.getText());
+    		usuario.setIdade(idade.getValue());
+    		
+    	}
+		
+	}
+
+	private boolean validarOperacaoAtualizar() {
+		if(!login.getText().equals("")){
+			if(!contemUsuario(this.getAdmController().getUsuariosData(), login.getText()) || login.getText().equals(usuario.getLogin())){
+				if(senha.getText().equals(repetirSenha.getText()) && !senha.getText().equals("")){
+					return true;
+				}else{
+					alerta("Senhas distintas ou vazias", "Senhas não conferem", "Pro favor, digite senhas que sejam iguais");
+		    		
+		    		senha.setText(usuario.getSenha());
+		    		repetirSenha.setText(usuario.getSenha());
+		    		
+		    		senha.requestFocus();
+				}
+			}else{
+				alerta("Login ja existente", "Login já cadastrado", "Pro favor, use outro login");
+				
+				login.setText(usuario.getLogin());
+				
+				login.requestFocus();
+			}
+		}else{
+			login.setText(usuario.getLogin());
+			
+			login.requestFocus();
+		}
+		return false;
+	}
+
+
+	private void cadastrar() {
+
+    	if(validarOperacaoCadastrar()){
+    		
     		this.getAdmController().getUsuariosData().add(new Usuario(login.getText(), senha.getText(), idade.getValue()));
     		
     		this.getStage().close();
     	}
-    	
-    }
-    
-    private boolean validarOperacao() {
+	}
+
+    private boolean validarOperacaoCadastrar() {
 		
     	if(senha.getText().equals(repetirSenha.getText()) && !senha.getText().equals("")){
     		if(idade.getValue()!=null){
@@ -99,10 +158,17 @@ public class CadUsuarioDialogController extends ControllerAdm{
 	@FXML
     private void initialize(){
     	
-    	for(int i=0;i<=130;i++){
+    	for(int i=1;i<=130;i++){
     		idades.add(i);
     	}
     	
     	idade.setItems(idades);
+    	
+    	if(usuario!=null){
+    		login.setText(usuario.getLogin());
+    		senha.setText(usuario.getSenha());
+    		repetirSenha.setText(usuario.getSenha());
+    		idade.setValue(usuario.getIdade());
+    	}
     }
 }

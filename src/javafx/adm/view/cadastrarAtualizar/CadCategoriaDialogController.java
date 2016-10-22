@@ -1,4 +1,4 @@
-package javafx.adm.view.cadastrar;
+package javafx.adm.view.cadastrarAtualizar;
 
 import java.util.List;
 
@@ -15,24 +15,69 @@ public class CadCategoriaDialogController extends ControllerAdm{
 	@FXML
 	private TextField nome;
 	   
+	private javafx.modelos.Categoria categoria;
+	
     public void BotaoCancelar(){
     	this.getStage().close();
     }
     
+    @FXML
     public void BotaoSalvar(){
-    	    	
-    	if(validarOperacao()){
+	 	
+    	switch(this.getAcao()){
+    		case CADASTRAR :
+    			cadastrar();
+    		break;
+    		case ATUALIZAR:
+    			atualizar();
+    		break;	
+    	}
+    	
+    	this.getStage().close();
+    }
+    
+    
+    private void atualizar() {
+		if(validarOperacaoAtualizar()){
+			categoria.setNome(nome.getText());
+		}
+		
+	}
 
-        	projeto.modelos.Categoria c = new projeto.modelos.Categoria(nome.getText());
+	private boolean validarOperacaoAtualizar() {
+		
+		if(!nome.getText().equals("")){
+			if(!contemCategoria(DAO.ACAO.listar(projeto.modelos.Categoria.class), nome.getText()) || nome.getText().equals(categoria.getNome())){
+				return true;
+			}else{
+				alerta("Categoria já existente", "Nome de categoria inválido", "Nome da categoria já existente, digite um outro nome para a categoria");
+				
+    			nome.setText(categoria.getNome());
+    			    			
+    			nome.requestFocus();
+			}
+		}else{
+			nome.requestFocus();
+		}
+		
+		return false;
+	}
+
+	private void cadastrar() {
+		
+	   	if(validarOperacaoCadastrar()){
+
+        	javafx.modelos.Categoria c = new javafx.modelos.Categoria(nome.getText());
     			
-    		DAO.ACAO.salvar(c);
+    		DAO.ACAO.salvar(c.getCategoriaBD());
         		
         	this.getStage().close();    	
     	}
     	
-    }
+		
+	}
         
-	private boolean validarOperacao() {
+	private boolean validarOperacaoCadastrar() {
 		
     	if(!nome.getText().equals("")){
     		if(!contemCategoria(DAO.ACAO.listar(projeto.modelos.Categoria.class), nome.getText())){
@@ -74,6 +119,8 @@ public class CadCategoriaDialogController extends ControllerAdm{
     
 	@FXML
     private void initialize(){
-		
+		if(categoria!=null){
+			nome.setText(categoria.getNome());
+		}
     }
 }

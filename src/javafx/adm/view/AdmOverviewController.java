@@ -25,6 +25,8 @@ public class AdmOverviewController {
 	
 	private Stage admStage;
 	
+	private AdmRootLayoutController admRootLayoutController;
+	
 	//---------------------------------------------------------------------------
 	
 	@FXML
@@ -81,6 +83,14 @@ public class AdmOverviewController {
 			videosData.add(new javafx.modelos.Video(vidBD));
 		}
 		
+	}
+
+	public AdmRootLayoutController getAdmRootLayoutController() {
+		return admRootLayoutController;
+	}
+
+	public void setAdmRootLayoutController(AdmRootLayoutController nAdmRootLayoutController) {
+		this.admRootLayoutController = nAdmRootLayoutController;
 	}
 
 	public void setAdmStage(Stage nStage) {

@@ -123,6 +123,8 @@ public class InicioOverviewController {
 	        // Mostra a janela de administrador
 	        stage.show();
 	        
+	        controller.setAdmRootLayoutController(rController);
+	        
 	        //Iniciar com foco no textfield de pesquisa de videos
 	        controller.focoPesquisaVideos();
 		} catch (IOException e) {

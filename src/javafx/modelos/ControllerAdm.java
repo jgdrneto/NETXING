@@ -6,12 +6,29 @@ import javafx.stage.Stage;
 
 public abstract class ControllerAdm {
 	
+	public enum ACAO{
+		CADASTRAR,
+		ATUALIZAR
+	}
+	
+	private ACAO acao;
+	
 	private Stage stage;
 	
 	private AdmOverviewController admController;
 	
 	private AdmRootLayoutController admRootLayoutController;
 	
+	
+	
+	public ACAO getAcao() {
+		return acao;
+	}
+
+	public void setAcao(ACAO acao) {
+		this.acao = acao;
+	}
+
 	public AdmRootLayoutController getAdmRootLayoutController() {
 		return admRootLayoutController;
 	}

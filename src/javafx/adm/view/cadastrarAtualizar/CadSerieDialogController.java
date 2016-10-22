@@ -1,4 +1,4 @@
-package javafx.adm.view.cadastrar;
+package javafx.adm.view.cadastrarAtualizar;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.adm.view.AdmOverviewController;
 import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
+import javafx.modelos.Serie;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -24,22 +25,32 @@ public class CadSerieDialogController extends ControllerAdm{
 	
 	private String nomeImagem;
 	private File arquivo;
-	    
-    public void BotaoCancelar(){
+	
+	private javafx.modelos.Serie serie;
+	
+    public Serie getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Serie serie) {
+		this.serie = serie;
+	}
+	
+	@FXML
+	public void BotaoCancelar(){
     	this.getStage().close();
     }
     
-    public void BotaoSalvar(){
-    	    	
-    	if(validarOperacao()){
-
+    private void cadastrar(){
+    	if(validarOperacaoCadastrar()){
+    		
     		try {
     			
     			AdmOverviewController.copyFile(arquivo, new File("imagens/"+ nome.getText()+arquivo.getName().substring(arquivo.getName().lastIndexOf("."))));
         		
-        		projeto.modelos.Serie s = new projeto.modelos.Serie(nome.getText(), nomeImagem);
+        		javafx.modelos.Serie s = new Serie(nome.getText(), nomeImagem);
     			
-    			DAO.ACAO.salvar(s);
+    			DAO.ACAO.salvar(s.getSerieBD());
         		
         		this.getStage().close();
     							
@@ -48,10 +59,72 @@ public class CadSerieDialogController extends ControllerAdm{
 			}
     	
     	}
-    	
-    }
+    } 
     
     @FXML
+    public void BotaoSalvar(){
+    	 	
+    	switch(this.getAcao()){
+    		case CADASTRAR :
+    			cadastrar();
+    		break;
+    		case ATUALIZAR:
+    			atualizar();
+    		break;	
+    	}
+    	
+    	this.getStage().close();
+    }
+    
+    private void atualizar() {
+    	if(validarOperacaoAtualizar()){
+    		
+    		for(javafx.modelos.Video v : this.getAdmController().getVideosData()){
+    			if(v.getSerie().equals(serie.getNome())){
+    				v.setNome(nome.getText());
+    				
+    				v.getSerieBD().setImagem(nomeImagem);
+    				
+    				DAO.ACAO.atualizar(v.getSerieBD());
+    			}
+    		}
+    		
+    		serie.setNome(nome.getText());
+    		serie.setNomeImagem(nomeImagem);
+    		
+    		
+    		
+    	}
+	}
+
+	private boolean validarOperacaoAtualizar() {
+		
+		if(!nome.getText().equals("")){
+			if(!contemSerie(DAO.ACAO.listar(projeto.modelos.Serie.class), nome.getText()) || nome.getText().equals(serie.getNome())){
+				if(nomeImagem!=null){
+					return true;
+				}else{
+					
+					nomeImagem = serie.getNomeImagem();
+					abrirArquivo.setText(nomeImagem.substring(nomeImagem.lastIndexOf("/")));		
+							
+					abrirArquivo.requestFocus();
+				}
+			}else{
+				alerta("Série já existente", "Nome de śerie inválido", "Nome da série já existente, digite um outro nome para a śerie");
+				
+    			nome.setText("");
+
+    			nome.requestFocus();
+			}
+		}else{
+			nome.requestFocus();
+		}
+		
+		return false;
+	}
+
+	@FXML
     private void abrirArquivo() {
 		
     	FileChooser fCImagem = new FileChooser();
@@ -72,7 +145,7 @@ public class CadSerieDialogController extends ControllerAdm{
     	}	
 	}
     
-	private boolean validarOperacao() {
+	private boolean validarOperacaoCadastrar() {
 		
     	if(!nome.getText().equals("")){
     		if(!contemSerie(DAO.ACAO.listar(projeto.modelos.Serie.class), nome.getText())){
@@ -107,7 +180,7 @@ public class CadSerieDialogController extends ControllerAdm{
     		}
     	}
     	
-		return false;
+		return  false;
 	}
 
 	private void alerta(String titulo, String cabecalho, String conteudo){
@@ -121,6 +194,10 @@ public class CadSerieDialogController extends ControllerAdm{
     
 	@FXML
     private void initialize(){
-		
+		if(serie!=null){
+			nome.setText(serie.getNome());
+			nomeImagem = serie.getNomeImagem();
+			abrirArquivo.setText(nomeImagem.substring(nomeImagem.lastIndexOf("/")));
+		}
     }
 }

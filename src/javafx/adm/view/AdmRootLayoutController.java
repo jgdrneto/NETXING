@@ -2,12 +2,14 @@ package javafx.adm.view;
 
 import java.io.IOException;
 
-import javafx.adm.view.cadastrar.CadCategoriaDialogController;
-import javafx.adm.view.cadastrar.CadSerieDialogController;
-import javafx.adm.view.cadastrar.CadUsuarioDialogController;
+import javafx.adm.view.cadastrarAtualizar.CadCategoriaDialogController;
+import javafx.adm.view.cadastrarAtualizar.CadSerieDialogController;
+import javafx.adm.view.cadastrarAtualizar.CadUsuarioDialogController;
+import javafx.adm.view.cadastrarAtualizar.CadVideoDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.modelos.ControllerAdm;
+import javafx.modelos.ControllerAdm.ACAO;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -46,7 +48,7 @@ public class AdmRootLayoutController {
 		 try {
         	 // Carrega o arquivo fxml e cria um novo stage para a janela popup.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AdmRootLayoutController.class.getResource("cadastrar/"+arquivoFXML));
+            loader.setLocation(AdmRootLayoutController.class.getResource("cadastrarAtualizar/"+arquivoFXML));
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
@@ -62,6 +64,7 @@ public class AdmRootLayoutController {
 	        controlador.setAdmRootLayoutController(this);
 	        controlador.setAdmController(admController);
 	        controlador.setStage(dialogStage);
+	        controlador.setAcao(ACAO.CADASTRAR);
 	        
 	        dialogStage.showAndWait();
 	        
@@ -84,6 +87,11 @@ public class AdmRootLayoutController {
 	@FXML
 	public void cadastrarCategoria(){
        abrirDialog("CadCategoriaDialog.fxml", "Cadastrar Categoria", new CadCategoriaDialogController());
+	}
+	
+	@FXML
+	public void cadastrarVideo(){
+       abrirDialog("CadVideoDialog.fxml", "Cadastrar Video", new CadVideoDialogController());
 	}
 	
 }

@@ -2,20 +2,28 @@ package javafx.modelos;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import projeto.dao.DAO;
 
 public class Categoria {
 	
 	private projeto.modelos.Categoria categoriaBD;
 	private StringProperty nome;
-	private Integer idCategoria; 
 	
-	public Categoria(String nome) {
-		this.nome = new SimpleStringProperty(nome);
+	public Categoria(String nNome) {
+		this.nome = new SimpleStringProperty(nNome);
+		
+		projeto.modelos.Categoria categoria = new projeto.modelos.Categoria(nNome);
+		
+		DAO.ACAO.salvar(categoria);
+		
 	}
 	
-	public Categoria(Integer nIdCategoria,String nome) {
-		this.idCategoria = nIdCategoria;
-		this.nome = new SimpleStringProperty(nome);
+	public Categoria(projeto.modelos.Categoria nCategoria) {
+		
+		categoriaBD = nCategoria;
+		
+		this.nome = new SimpleStringProperty(nCategoria.getNome());
+		
 	}
 	
 	public String getNome() {
@@ -26,15 +34,18 @@ public class Categoria {
 		return nome;
 	}
 	
-	public void setNome(String nome) {
-		this.nome.set(nome);
+	public void setNome(String nNome) {
+		this.nome.set(nNome);
+		
+		categoriaBD.setNome(nNome);
+		
+		DAO.ACAO.atualizar(categoriaBD);
+		
 	}
 
-	public Integer getIdCategoria() {
-		return idCategoria;
+	public projeto.modelos.Categoria getCategoriaBD() {
+		return categoriaBD;
 	}
+	
 
-	public void setIdCategoria(Integer idCategoria) {
-		this.idCategoria = idCategoria;
-	}
 }
