@@ -9,7 +9,6 @@ import javafx.adm.view.cadastrarAtualizar.CadVideoDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.modelos.ControllerAdm;
-import javafx.modelos.ControllerAdm.ACAO;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +19,6 @@ public class AdmRootLayoutController {
 	
 	InicioOverviewController inicioController;
 	AdmOverviewController admController;
-	
 	
 	public void setInicioOverviewController(InicioOverviewController c){
 		inicioController = c;
@@ -63,9 +61,7 @@ public class AdmRootLayoutController {
 	        
 	        controlador.setAdmRootLayoutController(this);
 	        controlador.setAdmController(admController);
-	        controlador.setStage(dialogStage);
-	        controlador.setAcao(ACAO.CADASTRAR);
-	        
+	        controlador.setStage(dialogStage);	        
 	        dialogStage.showAndWait();
 	        
 		} catch (IOException e) {

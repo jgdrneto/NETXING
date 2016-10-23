@@ -1,15 +1,22 @@
 package javafx.adm.view.cadastrarAtualizar;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javafx.adm.view.AdmOverviewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
-import javafx.modelos.Usuario;
+import javafx.modelos.Video;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
+import projeto.dao.DAO;
 import javafx.scene.control.Button;
 
 public class CadVideoDialogController extends ControllerAdm{
@@ -32,76 +39,294 @@ public class CadVideoDialogController extends ControllerAdm{
 	private ChoiceBox<projeto.modelos.Serie> series;
 	@FXML
 	private ChoiceBox<projeto.modelos.Categoria> categorias;
-	ObservableList<Integer> idades = FXCollections.observableArrayList();
 	@FXML
 	private Button escolherVideo;
 	@FXML
 	private Button escolherImagem;
 	
-    public void BotaoCancelar(){
+	ObservableList<Integer> idades = FXCollections.observableArrayList();
+	
+	ObservableList<projeto.modelos.Categoria> lCategoriasBD = FXCollections.observableArrayList();
+	
+	ObservableList<projeto.modelos.Serie> lSeriesBD = FXCollections.observableArrayList();
+	
+	String caminhoVideo;
+	
+	String caminhoImagem;
+	
+	File arquivoVideo;
+	
+	File arquivoImagem;
+	
+	Integer intAno;
+	
+	Video video;
+	
+    public CadVideoDialogController() {
+		this.setAcao(ACAO.CADASTRAR);
+	}
+    
+    public CadVideoDialogController(Video nVideo) {
+		this.video=nVideo;
+		this.setAcao(ACAO.ATUALIZAR);
+	}
+    
+	public void BotaoCancelar(){
     	this.getStage().close();
     }
     
     @FXML
     public void BotaoSalvar(){
-    	/*
-    	if(validarOperacao()){
-    		this.getAdmController().getUsuariosData().add(new Usuario(login.getText(), senha.getText(), idade.getValue()));
-    		
-    		this.getStage().close();
+	 	
+    	switch(this.getAcao()){
+    		case CADASTRAR :
+    			cadastrar();
+    		break;
+    		case ATUALIZAR:
+    			atualizar();
+    		break;	
     	}
-    	*/
+    	
+    	this.getStage().close();
     }
     
-    private boolean validarOperacao() {
-		/*
-    	if(senha.getText().equals(repetirSenha.getText()) && !senha.getText().equals("")){
-    		if(idade.getValue()!=null){
-    			if(!login.getText().equals("")){
-    				if(!contemUsuario(this.getAdmController().getUsuariosData(), login.getText())){
-    					
-    					return true;
-    					
-    				}else{
-    					alerta("Login ja existente", "Login já cadastrado", "Pro favor, use outro login");
-    					
-    					login.setText("");
-    					
-    					login.requestFocus();
-    				}
-    			}else{
-    				login.requestFocus();
+    private void atualizar() {
+    	
+    	if(validarOperacaoAtualizar()){
+    		
+    		try {
+    			if(!caminhoVideo.equals(video.getVideo())){
+    				AdmOverviewController.copyFile(arquivoVideo, new File ("videos/"+nome.getText()+arquivoVideo.getName().substring(arquivoVideo.getName().lastIndexOf("."))));
     			}
-    		}else{
-    			idade.requestFocus();
-    		}
-    	}else{
-    		alerta("Senhas distintas ou vazias", "Senhas não conferem", "Pro favor, digite senhas que sejam iguais");
+				if(!caminhoImagem.equals(video.getImagem())){
+					AdmOverviewController.copyFile(arquivoImagem, new File("imagens/videos/"+arquivoImagem.getName().substring(arquivoImagem.getName().lastIndexOf("."))));
+				}
+				
+				video.setAno(intAno);
+	    		video.setNome(nome.getText());
+	    		video.getVideoBD().setSerie(series.getValue());
+	    		video.getVideoBD().setCategoria(categorias.getValue());
+	    		video.setArquivoVideo(caminhoVideo);
+	    		video.setImagem(caminhoImagem);
+	    		video.setDescricao(descricao.getText());
+	    		video.setDiretor(diretor.getText());
+	    		video.setAtorPrincipal(atorPrincipal.getText());
+	    		video.setFaixaEtaria(idade.getValue());
+	    		video.setTemporada(temporada.getText());
+	    		
+	    		DAO.ACAO.atualizar(video.getVideoBD());
+    		} catch (IOException e) {
+    			System.out.println("Erro na cópia de arquivo");
+			}
     		
-    		senha.setText("");
-    		repetirSenha.setText("");
     		
-    		senha.requestFocus();
     	}
-    	*/
+		
+	}
+
+	private boolean validarOperacaoAtualizar() {
+		if(!nome.getText().equals("")){
+			if(!contemNome(this.getAdmController().getVideosData(), nome.getText()) || nome.getText().equals(video.getNome()) ){
+				if(series.getValue()!=null){
+					if(idade.getValue()!=null){
+						if(categorias.getValue()!=null){
+							if(caminhoVideo!=null){
+								if(!descricao.getText().equals("")){
+									if(!diretor.getText().equals("")){
+										if(!temporada.getText().equals("")){
+											try{
+												intAno = Integer.parseInt(ano.getText());
+												
+												return true;
+											}catch(NumberFormatException e){
+												ano.setText(video.getAno().toString());
+												ano.requestFocus();
+											}
+										}else{
+											temporada.setText(video.getTemporada());
+											
+											temporada.requestFocus();
+										}
+									}else{
+										
+										diretor.setText(video.getDiretor());
+										
+										diretor.requestFocus();
+									}
+								}else{
+									
+									descricao.setText(video.getDescricao());
+									
+									descricao.requestFocus();
+								}
+							}else{
+								
+								escolherVideo.setText(video.getVideo().substring(video.getVideo().lastIndexOf("/")));
+								
+								escolherVideo.requestFocus();
+							}
+						}else{
+							
+							categorias.setValue(video.getCategoriaBD());
+							
+							categorias.requestFocus();
+						}	
+					}else{
+						
+						idade.setValue(video.getFaixaEtaria());
+						
+						idade.requestFocus();
+					}
+					
+				}else{
+					series.setValue(video.getSerieBD());
+					
+					series.requestFocus();
+				}
+			}else{
+				alerta("Nome de vídeo ja existente", "Nome já cadastrado", "Pro favor, use outro nome para o vídeo");
+				
+				nome.setText(video.getNome());
+				
+				nome.requestFocus();
+			}
+		}else{
+			
+		}
+    	return false;
+    	
+	}
+
+	private void cadastrar() {
+		if(validarOperacaoCadastrar()){
+						
+			try{
+				
+				AdmOverviewController.copyFile(arquivoVideo, new File ("videos/"+nome.getText()+arquivoVideo.getName().substring(arquivoVideo.getName().lastIndexOf("."))));
+				
+				if(caminhoImagem!=null){
+					AdmOverviewController.copyFile(arquivoImagem, new File("imagens/videos/"+arquivoImagem.getName().substring(arquivoImagem.getName().lastIndexOf("."))));
+				}else{
+					caminhoImagem = series.getValue().getImagem(); 
+				}
+				
+				javafx.modelos.Video v = new Video(categorias.getValue(),
+						  series.getValue(),
+						  nome.getText(),
+						  descricao.getText(),
+						  intAno,
+						  diretor.getText(),
+						  atorPrincipal.getText(),
+						  idade.getValue(),
+						  temporada.getText(),
+						  caminhoVideo,
+						  caminhoImagem);
+				
+				this.getAdmController().getVideosData().add(v);
+				
+			} catch (IOException e) {
+    			System.out.println("Erro na cópia de arquivo");
+			}
+		}
+		
+	}
+
+	private boolean validarOperacaoCadastrar() {
+		
+		if(!contemNome(this.getAdmController().getVideosData(), nome.getText()) && !nome.getText().equals("")){
+			if(series.getValue()!=null){
+				if(idade.getValue()!=null){
+					if(categorias.getValue()!=null){
+						if(caminhoVideo!=null){
+							if(!descricao.getText().equals("")){
+								if(!diretor.getText().equals("")){
+									if(!temporada.getText().equals("")){
+										try{
+											intAno = Integer.parseInt(ano.getText());
+											
+											return true;
+										}catch(NumberFormatException e){
+											ano.setText("");
+											ano.requestFocus();
+										}
+									}else{
+										temporada.requestFocus();
+									}
+								}else{
+									diretor.requestFocus();
+								}
+							}else{
+								descricao.requestFocus();
+							}
+						}else{
+							escolherVideo.requestFocus();
+						}
+					}else{
+						categorias.requestFocus();
+					}	
+				}else{
+					idade.requestFocus();
+				}
+				
+			}else{
+				series.requestFocus();
+			}
+		}else{
+			alerta("Nome de vídeo ja existente", "Nome já cadastrado", "Pro favor, use outro nome para o vídeo");
+			
+			nome.setText("");
+			
+			nome.requestFocus();
+		}
+		
     	return false;
     	
 	}
     
     @FXML
     private void escolherVideo(){
+    	FileChooser fCImagem = new FileChooser();
     	
+    	FileChooser.ExtensionFilter extensoes = new FileChooser.ExtensionFilter("Arquivos de vídeos (*.mp4, *.avi", "*.mp4","*.avi");
+		
+    	fCImagem.getExtensionFilters().add(extensoes);
+    	
+    	File file = fCImagem.showOpenDialog(this.getStage());
+    	
+    	if(file!=null){
+
+    		arquivoVideo = file;
+    			
+    		escolherVideo.setText(file.getName());
+    		
+    		caminhoVideo = "videos/"+nome.getText()+arquivoVideo.getName().substring(arquivoVideo.getName().lastIndexOf("."));
+    	}
     }
     
     @FXML
-    private void escolherSerie(){
+    private void escolherImagem(){
+    	FileChooser fCImagem = new FileChooser();
     	
+    	FileChooser.ExtensionFilter extensoes = new FileChooser.ExtensionFilter("Arquivos de imagens (*.png, *.jpg, *.bmp)", "*.png","*.jpg","*.bmp");
+		
+    	fCImagem.getExtensionFilters().add(extensoes);
+    	
+    	File file = fCImagem.showOpenDialog(this.getStage());
+    	
+    	if(file!=null){
+
+    		arquivoImagem = file;
+    			
+    		escolherImagem.setText(file.getName());
+    		
+    		caminhoImagem = "imagens/videos/"+nome.getText()+arquivoImagem.getName().substring(arquivoImagem.getName().lastIndexOf("."));
+    	}	
     }
     
-    private boolean contemUsuario(ObservableList<Usuario> usuariosData, String text) {
+    private boolean contemNome(ObservableList<Video> videosData, String text) {
 		
-    	for(Usuario u : usuariosData){
-    		if(u.getLogin().equals(text)){
+    	for(Video v : videosData){
+    		if(v.getNome().equals(text)){
     			return true;
     		}
     	}
@@ -120,11 +345,20 @@ public class CadVideoDialogController extends ControllerAdm{
     
 	@FXML
     private void initialize(){
-    	
-    	for(int i=1;i<=130;i++){
+		
+		for(int i=1;i<=130;i++){
     		idades.add(i);
     	}
     	
     	idade.setItems(idades);
+    	
+    	List<projeto.modelos.Categoria> lCategoriasBD = DAO.ACAO.listar(projeto.modelos.Categoria.class);
+    	List<projeto.modelos.Serie> lSeriesBD = DAO.ACAO.listar(projeto.modelos.Serie.class);
+    	
+    	this.lCategoriasBD.addAll(lCategoriasBD);
+    	this.lSeriesBD.addAll(lSeriesBD);
+
+    	categorias.setItems(this.lCategoriasBD);
+    	series.setItems(this.lSeriesBD);
     }
 }

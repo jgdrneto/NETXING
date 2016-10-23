@@ -3,6 +3,7 @@ package javafx.adm.view.cadastrarAtualizar;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.modelos.Categoria;
 import javafx.modelos.ControllerAdm;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -16,6 +17,16 @@ public class CadCategoriaDialogController extends ControllerAdm{
 	private TextField nome;
 	   
 	private javafx.modelos.Categoria categoria;
+
+    public CadCategoriaDialogController() {
+    	this.setAcao(ACAO.CADASTRAR);
+	}
+
+    public CadCategoriaDialogController(Categoria nCategoria) {
+    	categoria = nCategoria;
+    	
+    	this.setAcao(ACAO.ATUALIZAR);
+	}
 	
     public void BotaoCancelar(){
     	this.getStage().close();

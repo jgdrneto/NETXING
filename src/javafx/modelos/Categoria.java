@@ -47,5 +47,10 @@ public class Categoria {
 		return categoriaBD;
 	}
 	
-
+	@Override
+	public String toString() {
+		return getNome();
+	}
+	
+	
 }

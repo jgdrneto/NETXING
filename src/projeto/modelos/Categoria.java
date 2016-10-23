@@ -65,4 +65,10 @@ public class Categoria implements java.io.Serializable {
 		this.videos = videos;
 	}
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	
 }

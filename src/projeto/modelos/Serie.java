@@ -88,4 +88,11 @@ public class Serie implements java.io.Serializable {
 		this.seriefavoritas = seriefavoritas;
 	}
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	
+	
 }

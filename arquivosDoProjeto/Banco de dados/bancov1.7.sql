@@ -138,6 +138,4 @@ INSERT INTO USUARIO (login,senha, idade)
 VALUES ('jackson','mani', 21);
 
 INSERT INTO SERIE (nome,imagem)
-VALUES ('Sem série', 'imagens/SemSerie.png');
-
-select * from SERIE;
+VALUES ('Sem série', 'imagens/series/SemSerie.png');

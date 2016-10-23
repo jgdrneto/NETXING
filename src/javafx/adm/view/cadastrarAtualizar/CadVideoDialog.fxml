@@ -52,7 +52,7 @@
             <HBox spacing="50.0">
                <children>
                   <Label prefHeight="26.0" prefWidth="59.0" text="Imagem:" />
-                  <Button fx:id="escolherImagem" mnemonicParsing="false" onAction="#escolherSerie" prefHeight="26.0" prefWidth="150.0" text="Escolher Imagem">
+                  <Button fx:id="escolherImagem" mnemonicParsing="false" onAction="#escolherImagem" prefHeight="26.0" prefWidth="150.0" text="Escolher Imagem">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

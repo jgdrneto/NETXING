@@ -30,6 +30,33 @@ public class Video{
 	private projeto.modelos.Serie serieBD;
 	private projeto.modelos.Categoria categoriaBD;
 	
+	
+	public Video(Categoria categoria, Serie serie, String nome, String descricao, Integer ano, 
+			String diretor, String atorPrincipal, Integer faixaEtaria,String temporada, 
+			String arquivoVideo, String arquivoImagem) {
+		
+		this.categoria = new SimpleStringProperty(categoria.getNome());
+		this.serie =  new SimpleStringProperty(serie.getNome());
+		this.nome = new SimpleStringProperty(nome);
+		this.descricao = new SimpleStringProperty(descricao);
+		this.ano = new SimpleIntegerProperty(ano);
+		this.diretor = new SimpleStringProperty(diretor);
+		this.atorPrincipal = new SimpleStringProperty(atorPrincipal);
+		this.faixaEtaria = new SimpleIntegerProperty(faixaEtaria);
+		this.temporada = new SimpleStringProperty(temporada);
+		this.video = arquivoVideo;
+		this.imagem = arquivoImagem;
+		
+		categoriaBD = categoria;
+		
+		serieBD = serie;
+				
+		videoBD = new projeto.modelos.Video(categoriaBD,serieBD,nome,descricao,ano,diretor,atorPrincipal,faixaEtaria,temporada,arquivoVideo,arquivoImagem);
+		
+		DAO.ACAO.salvar(videoBD);
+		
+	}
+	
 	public Video(String categoria, String serie, String nome, String descricao, Integer ano, 
 			String diretor, String atorPrincipal, Integer faixaEtaria,String temporada, 
 			String arquivoVideo, String arquivoImagem) {
@@ -52,6 +79,7 @@ public class Video{
 				
 		videoBD = new projeto.modelos.Video(categoriaBD,serieBD,nome,descricao,ano,diretor,atorPrincipal,faixaEtaria,temporada,arquivoVideo,arquivoImagem);
 		
+		DAO.ACAO.salvar(videoBD);
 	}
 	
 	public Video(projeto.modelos.Video videoBD) {

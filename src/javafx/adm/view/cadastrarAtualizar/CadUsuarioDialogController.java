@@ -29,6 +29,15 @@ public class CadUsuarioDialogController extends ControllerAdm{
 	
 	ObservableList<Integer> idades = FXCollections.observableArrayList();
 	
+	public CadUsuarioDialogController() {
+		this.setAcao(ACAO.CADASTRAR);
+	}
+	
+	public CadUsuarioDialogController(Usuario nUsuario) {
+		this.usuario = nUsuario;
+		this.setAcao(ACAO.ATUALIZAR);
+	}
+	
 	@FXML	    
     public void BotaoCancelar(){
     	this.getStage().close();

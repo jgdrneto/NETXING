@@ -7,17 +7,24 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.List;
 
+import javafx.adm.view.detalhes.VideoDetalhesController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.modelos.Usuario;
+import javafx.fxml.FXMLLoader;
+import javafx.modelos.ControllerAdm;
 import javafx.modelos.Video;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import projeto.dao.DAO;
 
@@ -200,6 +207,51 @@ public class AdmOverviewController {
 	        	}
 	        }
 	    });
+	}
+	
+	@FXML
+	private void duploCliqueVideos(){
+
+		tb_Videos.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+		        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+		            if(mouseEvent.getClickCount() == 2 && tb_Videos.getSelectionModel().getSelectedIndex()>=0){
+		            	
+		            	abrirDialogDetalhe("VideoDetalhes.fxml","Detalhe do vídeo"); 
+		            }
+		        }
+		    }
+		});
+
+	}
+	
+	private void abrirDialogDetalhe(String arquivoFXML, String titulo){
+		 try {
+       	 // Carrega o arquivo fxml e cria um novo stage para a janela popup.
+			FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(VideoDetalhesController.class.getResource(arquivoFXML));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+	        dialogStage.setTitle(titulo);
+	        dialogStage.setResizable(false);
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(this.getAdmStage());
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        VideoDetalhesController controlador = loader.getController();
+	        controlador.setAdmController(this);
+	        controlador.setStage(dialogStage);
+	        controlador.setVideo(tb_Videos.getSelectionModel().getSelectedItem());
+	        
+	        dialogStage.showAndWait();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void copyFile(File source, File destination) throws IOException {

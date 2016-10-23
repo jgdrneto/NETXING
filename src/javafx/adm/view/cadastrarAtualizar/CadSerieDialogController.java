@@ -28,7 +28,17 @@ public class CadSerieDialogController extends ControllerAdm{
 	
 	private javafx.modelos.Serie serie;
 	
-    public Serie getSerie() {
+
+    public CadSerieDialogController() {
+    	this.setAcao(ACAO.CADASTRAR);
+	}
+
+    public CadSerieDialogController(Serie nSerie) {
+    	this.serie = nSerie;
+    	this.setAcao(ACAO.ATUALIZAR);
+	}
+    
+	public Serie getSerie() {
 		return serie;
 	}
 
@@ -46,7 +56,7 @@ public class CadSerieDialogController extends ControllerAdm{
     		
     		try {
     			
-    			AdmOverviewController.copyFile(arquivo, new File("imagens/"+ nome.getText()+arquivo.getName().substring(arquivo.getName().lastIndexOf("."))));
+    			AdmOverviewController.copyFile(arquivo, new File("imagens/series/"+ nome.getText()+arquivo.getName().substring(arquivo.getName().lastIndexOf("."))));
         		
         		javafx.modelos.Serie s = new Serie(nome.getText(), nomeImagem);
     			
@@ -141,7 +151,7 @@ public class CadSerieDialogController extends ControllerAdm{
     			
     		abrirArquivo.setText(file.getName());
     		
-    		nomeImagem = "imagens/"+nome.getText()+arquivo.getName().substring(arquivo.getName().lastIndexOf("."));
+    		nomeImagem = "imagens/series/"+nome.getText()+arquivo.getName().substring(arquivo.getName().lastIndexOf("."));
     	}	
 	}
     
@@ -194,10 +204,6 @@ public class CadSerieDialogController extends ControllerAdm{
     
 	@FXML
     private void initialize(){
-		if(serie!=null){
-			nome.setText(serie.getNome());
-			nomeImagem = serie.getNomeImagem();
-			abrirArquivo.setText(nomeImagem.substring(nomeImagem.lastIndexOf("/")));
-		}
+
     }
 }
