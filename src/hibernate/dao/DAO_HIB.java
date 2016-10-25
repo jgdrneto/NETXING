@@ -3,7 +3,6 @@ package hibernate.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hibernate.conexao.HibernateUtil;
@@ -16,13 +15,11 @@ public class DAO_HIB extends DAO {
 	@Override
 	public <T> void salvar(T objeto) {
 		
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		
 		try{
 		
-			transacao = sessao.beginTransaction();
+            transacao = HibernateUtil.getSession().beginTransaction();
 			
-			sessao.save(objeto);
+            HibernateUtil.getSession().save(objeto);
 			
 			transacao.commit();
 			
@@ -30,21 +27,18 @@ public class DAO_HIB extends DAO {
 
 		}catch(Exception e){
 			transacao.rollback();
-		}finally{
-			sessao.close();
 		}
+
 	}
 
 	@Override
 	public <T> void deletar(T objeto) {
 		
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		
 		try{
 		
-			transacao = sessao.beginTransaction();
+            transacao = HibernateUtil.getSession().beginTransaction();
 			
-			sessao.save(objeto);
+            HibernateUtil.getSession().delete(objeto);
 			
 			transacao.commit();
 			
@@ -52,36 +46,35 @@ public class DAO_HIB extends DAO {
 
 		}catch(Exception e){
 			transacao.rollback();
-		}finally{
-			sessao.close();
 		}
+
 	}
 
 	@Override
 	public <T> void atualizar(T objeto) {
-		
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		
+
 		try{
-		
-			transacao = sessao.beginTransaction();
+
+            transacao = HibernateUtil.getSession().beginTransaction();
 			
-			sessao.save(objeto);
+            HibernateUtil.getSession().update(objeto);
 			
 			transacao.commit();
 			
 			System.out.println(objeto.getClass().getSimpleName() +" atualizado(a)");
 
 		}catch(Exception e){
-			transacao.rollback();
-		}finally{
-			sessao.close();
+            e.printStackTrace();
+            transacao.rollback();
 		}
+
 	}
 
 	@Override
 	public <T> List<T> listar(Class<?> ClasseDaTabela) {
-		return new ArrayList<T>(HibernateUtil.getSessionFactory().openSession().createQuery("FROM "+ ClasseDaTabela.getSimpleName()).getResultList());
+
+        return new ArrayList<T>(
+                HibernateUtil.getSession().createQuery("FROM " + ClasseDaTabela.getSimpleName()).getResultList());
 	}
 	
 }

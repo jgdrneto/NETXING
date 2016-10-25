@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.adm.tabelas.TabCategoriaController">
+   <children>
+      <TableView layoutX="100.0" layoutY="80.0" prefHeight="500.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn minWidth="0.0" prefWidth="196.0" text="Nome da Serie" />
+            <TableColumn maxWidth="208.0" minWidth="-1.0" prefWidth="203.0" text="Caminho Imagem" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

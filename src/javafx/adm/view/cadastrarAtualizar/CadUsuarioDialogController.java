@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
 import javafx.modelos.Usuario;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class CadUsuarioDialogController extends ControllerAdm{
 	
@@ -54,8 +54,7 @@ public class CadUsuarioDialogController extends ControllerAdm{
     			atualizar();
     		break;	
     	}
-    	
-    	this.getStage().close();
+
     }
     
     private void atualizar() {
@@ -66,6 +65,7 @@ public class CadUsuarioDialogController extends ControllerAdm{
     		usuario.setSenha(senha.getText());
     		usuario.setIdade(idade.getValue());
     		
+            this.getStage().close();
     	}
 		
 	}

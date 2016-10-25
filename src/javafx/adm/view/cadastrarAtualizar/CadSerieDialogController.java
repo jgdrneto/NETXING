@@ -9,9 +9,9 @@ import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
 import javafx.modelos.Serie;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import projeto.dao.DAO;
 
@@ -83,7 +83,6 @@ public class CadSerieDialogController extends ControllerAdm{
     		break;	
     	}
     	
-    	this.getStage().close();
     }
     
     private void atualizar() {
@@ -91,19 +90,20 @@ public class CadSerieDialogController extends ControllerAdm{
     		
     		for(javafx.modelos.Video v : this.getAdmController().getVideosData()){
     			if(v.getSerie().equals(serie.getNome())){
-    				v.setNome(nome.getText());
+                    v.setSerie(nome.getText());
     				
     				v.getSerieBD().setImagem(nomeImagem);
     				
     				DAO.ACAO.atualizar(v.getSerieBD());
+
     			}
     		}
     		
-    		serie.setNome(nome.getText());
-    		serie.setNomeImagem(nomeImagem);
+            serie.setNome(nome.getText());
+            serie.setNomeImagem(nomeImagem);
     		
     		
-    		
+            this.getStage().close();
     	}
 	}
 

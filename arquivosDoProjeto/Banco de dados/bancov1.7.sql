@@ -139,3 +139,7 @@ VALUES ('jackson','mani', 21);
 
 INSERT INTO SERIE (nome,imagem)
 VALUES ('Sem série', 'imagens/series/SemSerie.png');
+
+use netxing;
+
+SELECT * FROM VIDEO;

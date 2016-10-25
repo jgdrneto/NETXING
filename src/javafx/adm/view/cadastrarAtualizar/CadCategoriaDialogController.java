@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.modelos.Categoria;
 import javafx.modelos.ControllerAdm;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-
+import javafx.scene.control.TextField;
 import projeto.dao.DAO;
 
 public class CadCategoriaDialogController extends ControllerAdm{
@@ -21,17 +20,19 @@ public class CadCategoriaDialogController extends ControllerAdm{
     public CadCategoriaDialogController() {
     	this.setAcao(ACAO.CADASTRAR);
 	}
-
-    public CadCategoriaDialogController(Categoria nCategoria) {
-    	categoria = nCategoria;
-    	
-    	this.setAcao(ACAO.ATUALIZAR);
-	}
 	
     public void BotaoCancelar(){
     	this.getStage().close();
     }
     
+    public void setCategoria(Categoria nCategoria) {
+        categoria = nCategoria;
+        
+        nome.setText(nCategoria.getNome());
+
+        this.setAcao(ACAO.ATUALIZAR);
+    }
+
     @FXML
     public void BotaoSalvar(){
 	 	
@@ -44,13 +45,21 @@ public class CadCategoriaDialogController extends ControllerAdm{
     		break;	
     	}
     	
-    	this.getStage().close();
     }
     
     
     private void atualizar() {
 		if(validarOperacaoAtualizar()){
-			categoria.setNome(nome.getText());
+
+            for (javafx.modelos.Video v : getAdmController().getVideosData()) {
+                if (v.getCategoria().equals(categoria.getNome())) {
+                    v.setCategoria(nome.getText());
+                }
+            }
+
+            categoria.setNome(nome.getText());
+
+            this.getStage().close();
 		}
 		
 	}
@@ -130,8 +139,6 @@ public class CadCategoriaDialogController extends ControllerAdm{
     
 	@FXML
     private void initialize(){
-		if(categoria!=null){
-			nome.setText(categoria.getNome());
-		}
+
     }
 }

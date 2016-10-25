@@ -11,13 +11,13 @@ import javafx.fxml.FXML;
 import javafx.modelos.ControllerAdm;
 import javafx.modelos.Video;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import projeto.dao.DAO;
-import javafx.scene.control.Button;
 
 public class CadVideoDialogController extends ControllerAdm{
 	
@@ -87,7 +87,6 @@ public class CadVideoDialogController extends ControllerAdm{
     		break;	
     	}
     	
-    	this.getStage().close();
     }
     
     private void atualizar() {
@@ -115,6 +114,9 @@ public class CadVideoDialogController extends ControllerAdm{
 	    		video.setTemporada(temporada.getText());
 	    		
 	    		DAO.ACAO.atualizar(video.getVideoBD());
+
+                this.getStage().close();
+
     		} catch (IOException e) {
     			System.out.println("Erro na cópia de arquivo");
 			}
@@ -224,9 +226,13 @@ public class CadVideoDialogController extends ControllerAdm{
 				
 				this.getAdmController().getVideosData().add(v);
 				
+                this.getStage().close();
+
 			} catch (IOException e) {
     			System.out.println("Erro na cópia de arquivo");
 			}
+        } else {
+            System.out.println("Entrando aqui não");
 		}
 		
 	}

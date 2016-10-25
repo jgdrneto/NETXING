@@ -1,7 +1,9 @@
 package javafx.adm.view;
 
 import java.io.IOException;
+import java.net.URL;
 
+import javafx.adm.tabelas.categorias.TabCategoriaController;
 import javafx.adm.view.cadastrarAtualizar.CadCategoriaDialogController;
 import javafx.adm.view.cadastrarAtualizar.CadSerieDialogController;
 import javafx.adm.view.cadastrarAtualizar.CadUsuarioDialogController;
@@ -42,11 +44,11 @@ public class AdmRootLayoutController {
 		
 	}
 	
-	private <T extends ControllerAdm> void abrirDialog(String arquivoFXML, String titulo, T controller){
+	private <T extends ControllerAdm> void abrirDialog(URL arquivoFXML, String titulo, T controller){
 		 try {
         	 // Carrega o arquivo fxml e cria um novo stage para a janela popup.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AdmRootLayoutController.class.getResource("cadastrarAtualizar/"+arquivoFXML));
+            loader.setLocation(arquivoFXML);
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
@@ -72,22 +74,31 @@ public class AdmRootLayoutController {
 	
 	@FXML
 	public void cadastrarUsuario(){
-		abrirDialog("CadUsuarioDialog.fxml", "Cadastrar Usuário", new CadUsuarioDialogController());
+		abrirDialog(AdmRootLayoutController.class.getResource("cadastrarAtualizar/CadUsuarioDialog.fxml"), "Cadastrar Usuário", new CadUsuarioDialogController());
 	}
 	
 	@FXML
 	public void cadastrarSerie(){
-       abrirDialog("CadSerieDialog.fxml", "Cadastrar Série", new CadSerieDialogController());
+        abrirDialog(AdmRootLayoutController.class.getResource("cadastrarAtualizar/CadSerieDialog.fxml"),
+                "Cadastrar Série", new CadSerieDialogController());
 	}
 	
 	@FXML
 	public void cadastrarCategoria(){
-       abrirDialog("CadCategoriaDialog.fxml", "Cadastrar Categoria", new CadCategoriaDialogController());
+        abrirDialog(AdmRootLayoutController.class.getResource("cadastrarAtualizar/CadCategoriaDialog.fxml"),
+                "Cadastrar Categoria", new CadCategoriaDialogController());
 	}
 	
 	@FXML
 	public void cadastrarVideo(){
-       abrirDialog("CadVideoDialog.fxml", "Cadastrar Video", new CadVideoDialogController());
+        abrirDialog(AdmRootLayoutController.class.getResource("cadastrarAtualizar/CadVideoDialog.fxml"),
+                "Cadastrar Video", new CadVideoDialogController());
 	}
 	
+    @FXML
+    public void atualizarCategoria() {
+        abrirDialog(TabCategoriaController.class.getResource("TabCategoria.fxml"), "Editar Categoria",
+                new TabCategoriaController());
+    }
+
 }

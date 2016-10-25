@@ -22,6 +22,8 @@ public class Categoria {
 		
 		categoriaBD = nCategoria;
 		
+        // DAO.ACAO.atualizar(categoriaBD);
+
 		this.nome = new SimpleStringProperty(nCategoria.getNome());
 		
 	}
