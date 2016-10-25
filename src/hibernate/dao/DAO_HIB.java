@@ -26,6 +26,7 @@ public class DAO_HIB extends DAO {
 			System.out.println(objeto.getClass().getSimpleName() +" salvo(a)");
 
 		}catch(Exception e){
+            e.printStackTrace();
 			transacao.rollback();
 		}
 
@@ -45,6 +46,7 @@ public class DAO_HIB extends DAO {
 			System.out.println(objeto.getClass().getSimpleName() +" deletado(a)");
 
 		}catch(Exception e){
+            e.printStackTrace();
 			transacao.rollback();
 		}
 

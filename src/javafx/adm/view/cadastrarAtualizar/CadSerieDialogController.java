@@ -32,11 +32,6 @@ public class CadSerieDialogController extends ControllerAdm{
     public CadSerieDialogController() {
     	this.setAcao(ACAO.CADASTRAR);
 	}
-
-    public CadSerieDialogController(Serie nSerie) {
-    	this.serie = nSerie;
-    	this.setAcao(ACAO.ATUALIZAR);
-	}
     
 	public Serie getSerie() {
 		return serie;
@@ -44,6 +39,14 @@ public class CadSerieDialogController extends ControllerAdm{
 
 	public void setSerie(Serie serie) {
 		this.serie = serie;
+
+        abrirArquivo.setText(serie.getNomeImagem().substring(serie.getNomeImagem().lastIndexOf("/") + 1));
+
+        nomeImagem = serie.getNomeImagem();
+
+        nome.setText(serie.getNome());
+
+        this.setAcao(ACAO.ATUALIZAR);
 	}
 	
 	@FXML

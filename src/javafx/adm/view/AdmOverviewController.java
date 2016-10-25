@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.List;
 
+import javafx.adm.view.cadastrarAtualizar.CadUsuarioDialogController;
+import javafx.adm.view.cadastrarAtualizar.CadVideoDialogController;
 import javafx.adm.view.detalhes.VideoDetalhesController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,10 +19,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.modelos.ControllerAdm;
 import javafx.modelos.Video;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -193,21 +197,147 @@ public class AdmOverviewController {
 		return usuariosData;
 	}
 
+    @FXML
+    public void pressionarBotaoTb_Videos() {
+
+        tb_Videos.setOnKeyReleased(
+                new EventHandler<KeyEvent>() {
+
+                    @Override
+                    public void handle(KeyEvent arg0) {
+                        // TODO Auto-generated method stub
+                        if (tb_Videos.getSelectionModel().getSelectedIndex() >= 0) {
+                            switch (arg0.getCode()) {
+                                case A:
+                                    abrirDialog(CadVideoDialogController.class.getResource("CadVideoDialog.fxml"), "Editar Vídeos",
+                                            tb_Videos.getSelectionModel().getSelectedItem());
+                                    break;
+                                case D:
+                                    System.out.println("não ta entrando aqui?");
+                                    deletarVideo();
+                                    break;
+
+                                default:
+
+                                    break;
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void deletarVideo() {
+
+        javafx.modelos.Video v = tb_Videos.getSelectionModel().getSelectedItem();
+
+        videosData.remove(v);
+
+        DAO.ACAO.deletar(v.getVideoBD());
+
+    }
+
 	@FXML
-	public void pressionarBotao(){
+    public void pressionarBotaoTb_Usuarios() {
 		
-		tb_Videos.setOnKeyReleased(
+        tb_Usuarios.setOnKeyReleased(
 			new EventHandler<KeyEvent>() {
 
 	        @Override
 	        public void handle(KeyEvent arg0) {
 	            // TODO Auto-generated method stub
-	        	if(arg0.getCode()==KeyCode.C){
-	        		System.out.println("Imprimiu o C");	
-	        	}
+                        if (tb_Usuarios.getSelectionModel().getSelectedIndex() >= 0) {
+                            switch (arg0.getCode()) {
+                                case A:
+                                    abrirDialog(CadUsuarioDialogController.class.getResource("CadUsuarioDialog.fxml"), "Editar Usuários",
+                                            tb_Usuarios.getSelectionModel().getSelectedItem());
+                                    break;
+
+                                case D:
+                                    deletarUsuario();
+                                    break;
+
+                                default:
+
+                                    break;
+                            }
+                        }
 	        }
 	    });
 	}
+	
+    private void deletarUsuario() {
+        if (tb_Usuarios.getSelectionModel().getSelectedItem().getIdUsuario() != 1) {
+
+            javafx.modelos.Usuario u = tb_Usuarios.getSelectionModel().getSelectedItem();
+
+            usuariosData.remove(u);
+
+            DAO.ACAO.deletar(u.getUsuarioBD());
+
+        } else {
+            alerta("Usuário de Administrador", "Não se pode excluir usuário de administrador",
+                    "Escolha outro usuário para remover");
+        }
+
+    }
+
+	private void alerta(String titulo, String cabecalho, String conteudo){
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
+        
+        alert.showAndWait();
+    }
+	
+    private <T extends ControllerAdm> void abrirDialog(URL arquivoFXML, String titulo, Object objeto) {
+        try {
+            // Carrega o arquivo fxml e cria um novo stage para a janela popup.
+           FXMLLoader loader = new FXMLLoader();
+           loader.setLocation(arquivoFXML);
+           AnchorPane page = (AnchorPane) loader.load();
+           
+           Stage dialogStage = new Stage();
+           dialogStage.setTitle(titulo);
+           dialogStage.setResizable(false);
+           dialogStage.initModality(Modality.WINDOW_MODAL);
+           dialogStage.initOwner(this.getAdmStage());
+           Scene scene = new Scene(page);
+           dialogStage.setScene(scene);
+          
+           T controlador = loader.getController();
+           controlador.setAdmRootLayoutController(admRootLayoutController);
+           controlador.setAdmController(this);
+           controlador.setStage(dialogStage);
+           dialogStage.setResizable(false);
+           
+           if (objeto instanceof javafx.modelos.Video) {
+                
+                CadVideoDialogController c = (CadVideoDialogController) controlador;
+                
+                javafx.modelos.Video v = (javafx.modelos.Video)objeto;
+                
+                c.setVideo(v);
+           }else{
+               if (objeto instanceof javafx.modelos.Usuario) {
+                   
+                   CadUsuarioDialogController c = (CadUsuarioDialogController) controlador;
+                   
+                   javafx.modelos.Usuario u = (javafx.modelos.Usuario)objeto;
+                   
+                   c.setUsuario(u);
+              }
+           }
+            
+            
+            
+           dialogStage.showAndWait();
+           
+       } catch (IOException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
+   }
 	
 	@FXML
 	private void duploCliqueVideos(){

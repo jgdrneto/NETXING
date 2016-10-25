@@ -32,10 +32,15 @@ public class CadUsuarioDialogController extends ControllerAdm{
 	public CadUsuarioDialogController() {
 		this.setAcao(ACAO.CADASTRAR);
 	}
-	
-	public CadUsuarioDialogController(Usuario nUsuario) {
-		this.usuario = nUsuario;
-		this.setAcao(ACAO.ATUALIZAR);
+
+    public void setUsuario(Usuario nUsuario) {
+        this.usuario = nUsuario;
+        this.setAcao(ACAO.ATUALIZAR);
+
+        login.setText(usuario.getLogin());
+        senha.setText(usuario.getSenha());
+        repetirSenha.setText(usuario.getSenha());
+        idade.setValue(usuario.getIdade());
 	}
 	
 	@FXML	    

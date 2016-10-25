@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.adm.tabelas.categorias.TabCategoriaController;
+import javafx.adm.tabelas.series.TabSerieController;
 import javafx.adm.view.cadastrarAtualizar.CadCategoriaDialogController;
 import javafx.adm.view.cadastrarAtualizar.CadSerieDialogController;
 import javafx.adm.view.cadastrarAtualizar.CadUsuarioDialogController;
@@ -63,7 +64,8 @@ public class AdmRootLayoutController {
 	        
 	        controlador.setAdmRootLayoutController(this);
 	        controlador.setAdmController(admController);
-	        controlador.setStage(dialogStage);	        
+	        controlador.setStage(dialogStage);
+	        dialogStage.setResizable(false);
 	        dialogStage.showAndWait();
 	        
 		} catch (IOException e) {
@@ -101,4 +103,9 @@ public class AdmRootLayoutController {
                 new TabCategoriaController());
     }
 
+    @FXML
+    public void atualizarSerie() {
+        abrirDialog(TabSerieController.class.getResource("TabSerie.fxml"), "Editar Série",
+                new TabSerieController());
+    }
 }

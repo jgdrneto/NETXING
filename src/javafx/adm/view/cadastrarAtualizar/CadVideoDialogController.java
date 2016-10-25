@@ -66,10 +66,26 @@ public class CadVideoDialogController extends ControllerAdm{
 		this.setAcao(ACAO.CADASTRAR);
 	}
     
-    public CadVideoDialogController(Video nVideo) {
-		this.video=nVideo;
-		this.setAcao(ACAO.ATUALIZAR);
-	}
+    public void setVideo(Video nVideo) {
+        this.video = nVideo;
+        this.setAcao(ACAO.ATUALIZAR);
+
+        nome.setText(video.getNome());
+        ano.setText(video.getAno().toString());
+        descricao.setText(video.getDescricao());
+        diretor.setText(video.getDiretor());
+        atorPrincipal.setText(video.getAtorPrincipal());
+        temporada.setText(video.getTemporada());
+        idade.setValue(video.getFaixaEtaria());
+        escolherVideo.setText(video.getVideo().substring(video.getVideo().lastIndexOf("/") + 1));
+        escolherImagem.setText(video.getImagem().substring(video.getImagem().lastIndexOf("/") + 1));
+        intAno = video.getAno();
+        caminhoImagem = video.getImagem();
+        caminhoVideo = video.getVideo();
+        series.setValue(video.getSerieBD());
+        categorias.setValue(video.getCategoriaBD());
+
+    }
     
 	public void BotaoCancelar(){
     	this.getStage().close();

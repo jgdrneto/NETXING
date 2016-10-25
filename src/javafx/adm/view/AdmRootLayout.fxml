@@ -20,7 +20,7 @@
             <Menu mnemonicParsing="false" text="Atualizar">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#atualizarCategoria" text="Atualizar Categoria" />
-                  <MenuItem mnemonicParsing="false" onAction="#cadastrarCategoria" text="Atualizar Serie" />
+                  <MenuItem mnemonicParsing="false" onAction="#atualizarSerie" text="Atualizar Serie" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Opções">

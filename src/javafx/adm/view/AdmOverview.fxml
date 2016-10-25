@@ -14,7 +14,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="702.0">
                <children>
-                  <TableView fx:id="tb_Videos" layoutX="70.0" layoutY="25.0" onKeyReleased="#pressionarBotao" onMouseClicked="#duploCliqueVideos" prefHeight="638.0" prefWidth="380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                  <TableView fx:id="tb_Videos" layoutX="70.0" layoutY="25.0" onKeyReleased="#pressionarBotaoTb_Videos" onMouseClicked="#duploCliqueVideos" prefHeight="638.0" prefWidth="380.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                     <columns>
                       <TableColumn fx:id="tb_Video_Nome" prefWidth="169.0" text="Nome" />
                       <TableColumn fx:id="tb_Video_Serie" prefWidth="169.0" text="Serie" />
@@ -34,7 +34,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
-                  <TableView fx:id="tb_Usuarios" layoutX="72.0" layoutY="117.0" prefHeight="638.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                  <TableView fx:id="tb_Usuarios" layoutX="72.0" layoutY="117.0" onMouseClicked="#pressionarBotaoTb_Usuarios" prefHeight="638.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                      <columns>
                         <TableColumn fx:id="tb_Usuario_Login" prefWidth="169.0" text="login" />
                         <TableColumn fx:id="tb_Usuario_Senha" prefWidth="117.0" text="senha" />

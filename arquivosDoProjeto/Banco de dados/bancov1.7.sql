@@ -140,6 +140,9 @@ VALUES ('jackson','mani', 21);
 INSERT INTO SERIE (nome,imagem)
 VALUES ('Sem série', 'imagens/series/SemSerie.png');
 
+INSERT INTO CATEGORIA (nome)
+VALUES ('Sem categoria');
+
 use netxing;
 
 SELECT * FROM VIDEO;

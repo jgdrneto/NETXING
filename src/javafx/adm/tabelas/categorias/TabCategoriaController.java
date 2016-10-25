@@ -34,7 +34,9 @@ public class TabCategoriaController extends ControllerAdm {
         List<projeto.modelos.Categoria> categorias = DAO.ACAO.listar(projeto.modelos.Categoria.class);
 
         for (projeto.modelos.Categoria c : categorias) {
-            categoriaData.add(new javafx.modelos.Categoria(c));
+            if (!c.getNome().equals("Sem categoria")) {
+                categoriaData.add(new javafx.modelos.Categoria(c));
+            }
         }
     }
 
