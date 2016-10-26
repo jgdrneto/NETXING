@@ -15,6 +15,7 @@ import javafx.modelos.ControllerAdm;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.sobre.SobreController;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -107,5 +108,11 @@ public class AdmRootLayoutController {
     public void atualizarSerie() {
         abrirDialog(TabSerieController.class.getResource("TabSerie.fxml"), "Editar Série",
                 new TabSerieController());
+    }
+
+    @FXML
+    public void sobre() {
+        abrirDialog(SobreController.class.getResource("Sobre.fxml"), "Sobre a NETXING",
+                new SobreController());
     }
 }

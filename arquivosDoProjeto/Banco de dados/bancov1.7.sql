@@ -142,7 +142,3 @@ VALUES ('Sem série', 'imagens/series/SemSerie.png');
 
 INSERT INTO CATEGORIA (nome)
 VALUES ('Sem categoria');
-
-use netxing;
-
-SELECT * FROM VIDEO;
