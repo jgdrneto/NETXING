@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.23782234957020057" layoutY="-2.0" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="638.0" prefWidth="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="66.0" layoutY="63.0" text="Início" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="63.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="38.0" layoutY="104.0" mnemonicParsing="false" text="Filmes" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="104.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="158.0" mnemonicParsing="false" text="Séries" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="158.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="212.0" mnemonicParsing="false" text="Vídeos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="212.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="427.0" mnemonicParsing="false" text="Histórico" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="373.0" mnemonicParsing="false" text="Em alta" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="319.0" mnemonicParsing="false" text="Favoritos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="109.0" layoutY="559.0" mnemonicParsing="false" text="Sair" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="18.0" />
+                        <Button layoutX="50.0" layoutY="517.0" mnemonicParsing="false" text="configurações" />
+                        <Label layoutX="38.0" layoutY="14.0" text="NETXING">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="280.0" text="Preferências">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView layoutX="9.0" layoutY="42.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                    <columns>
+                      <TableColumn prefWidth="199.0" text="Nome" />
+                      <TableColumn prefWidth="186.0" text="Categoria" />
+                        <TableColumn prefWidth="199.0" text="Ano" />
+                    </columns>
+                  </TableView>
+                  <TableView layoutX="10.0" layoutY="254.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                    <columns>
+                      <TableColumn prefWidth="295.0" text="Nome" />
+                        <TableColumn prefWidth="288.0" text="Temporada" />
+                    </columns>
+                  </TableView>
+                  <TableView layoutX="10.0" layoutY="465.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                    <columns>
+                      <TableColumn prefWidth="199.0" text="Nome" />
+                      <TableColumn prefWidth="206.0" text="Descrição" />
+                        <TableColumn prefWidth="179.0" text="Categoria" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="282.0" layoutY="15.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="282.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="284.0" layoutY="225.0" text="Séries mais assistidas" AnchorPane.leftAnchor="284.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="281.0" layoutY="433.0" text="Vídeos mais assistidos" AnchorPane.leftAnchor="281.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="21.0" layoutY="12.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField layoutX="21.0" layoutY="222.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField layoutX="21.0" layoutY="430.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

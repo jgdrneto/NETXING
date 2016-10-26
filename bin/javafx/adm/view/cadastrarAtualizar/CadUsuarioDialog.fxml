@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.adm.view.cadastrarAtualizar.CadUsuarioDialogController">
+   <children>
+      <VBox layoutX="47.0" layoutY="52.0" spacing="10.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="52.0">
+         <children>
+            <HBox spacing="87.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="40.0" text="Login:" />
+                  <TextField fx:id="login" prefWidth="130.0" />
+               </children>
+            </HBox>
+            <HBox spacing="81.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="46.0" text="Senha:" />
+                  <PasswordField fx:id="senha" prefWidth="130.0" />
+               </children>
+            </HBox>
+            <HBox spacing="30.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="97.0" text="Repetir Senha:" />
+                  <PasswordField fx:id="repetirSenha" prefWidth="130.0" />
+               </children>
+            </HBox>
+            <HBox spacing="140.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="49.0" text="Idade:" />
+                  <ChoiceBox fx:id="idade" prefHeight="26.0" prefWidth="68.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox layoutX="90.0" layoutY="220.0" prefHeight="26.0" prefWidth="176.0" spacing="40.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="220.0">
+         <children>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#BotaoSalvar" text="Salvar" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#BotaoCancelar" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
