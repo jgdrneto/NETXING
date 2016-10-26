@@ -16,13 +16,15 @@ public class Categoria {
 		
 		DAO.ACAO.salvar(categoria);
 		
+        categoriaBD = categoria;
+
 	}
 	
 	public Categoria(projeto.modelos.Categoria nCategoria) {
 		
 		categoriaBD = nCategoria;
 		
-        // DAO.ACAO.atualizar(categoriaBD);
+        DAO.ACAO.atualizar(categoriaBD);
 
 		this.nome = new SimpleStringProperty(nCategoria.getNome());
 		

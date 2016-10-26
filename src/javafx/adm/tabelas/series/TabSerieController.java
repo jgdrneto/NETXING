@@ -14,6 +14,7 @@ import javafx.modelos.ControllerAdm;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -56,6 +57,40 @@ public class TabSerieController extends ControllerAdm {
                 }
             }
         });
+    }
+    
+    @FXML
+    public void pressionarBotao() {
+        tb_Serie.setOnKeyPressed(
+            new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                if (tb_Serie.getSelectionModel().getSelectedIndex() >= 0) {
+                    switch (arg0.getCode()) {
+                        case D:
+                            deletarSerie();
+                        break;
+
+                        default:
+
+                        break;
+                    }
+                }
+            }
+        });
+    }
+    
+    protected void deletarSerie() {
+        for (javafx.modelos.Video v : getAdmController().getVideosData()) {
+            if (v.getSerie().equals(tb_Serie.getSelectionModel().getSelectedItem().getNome())) {
+                v.setSerieBD((projeto.modelos.Serie) DAO.ACAO.listar(projeto.modelos.Serie.class).get(0));
+            }
+        }
+
+        DAO.ACAO.deletar(tb_Serie.getSelectionModel().getSelectedItem().getSerieBD());
+        serieData.remove(tb_Serie.getSelectionModel().getSelectedItem());
     }
 
     private void abrirDialogUpdate(String arquivoFXML, String titulo) {

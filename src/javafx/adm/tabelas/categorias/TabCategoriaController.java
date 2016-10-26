@@ -13,6 +13,7 @@ import javafx.modelos.ControllerAdm;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -54,6 +55,42 @@ public class TabCategoriaController extends ControllerAdm {
                 }
             }
         });
+    }
+    
+    @FXML
+    public void pressionarBotao() {
+        tb_Categoria.setOnKeyPressed(
+            new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                 System.out.println("Evento: " + arg0.getCode().toString());
+
+                if (tb_Categoria.getSelectionModel().getSelectedIndex() >= 0) {
+                    switch (arg0.getCode()) {
+                        case D:
+                            deletarCategoria();
+                        break;
+
+                        default:
+
+                        break;
+                    }
+                }
+            }
+        });
+    }
+    
+    protected void deletarCategoria() {
+        for (javafx.modelos.Video v : getAdmController().getVideosData()) {
+            if (v.getCategoria().equals(tb_Categoria.getSelectionModel().getSelectedItem().getNome())) {
+                v.setCategoriaBD((projeto.modelos.Categoria)DAO.ACAO.listar(projeto.modelos.Categoria.class).get(0));
+            }
+        }
+
+        DAO.ACAO.deletar(tb_Categoria.getSelectionModel().getSelectedItem().getCategoriaBD());
+        categoriaData.remove(tb_Categoria.getSelectionModel().getSelectedItem());
     }
 
     private void abrirDialogUpdate(String arquivoFXML, String titulo) {

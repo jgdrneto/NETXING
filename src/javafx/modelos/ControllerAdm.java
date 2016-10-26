@@ -2,6 +2,7 @@ package javafx.modelos;
 
 import javafx.adm.view.AdmOverviewController;
 import javafx.adm.view.AdmRootLayoutController;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public abstract class ControllerAdm {
@@ -42,7 +43,11 @@ public abstract class ControllerAdm {
 	}
 
 	public void setStage(Stage nStage) {
+
 		stage = nStage;
+
+        this.stage.getIcons().add(new Image("file:resources/Chingling_BW.gif"));
+
 	}
 
 	public AdmOverviewController getAdmController() {

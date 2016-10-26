@@ -318,6 +318,26 @@ public class Video{
 		this.imagem = arquivoImagem;
 	}
 
+    public void setCategoriaBD(projeto.modelos.Categoria nCategoria) {
+        categoriaBD = nCategoria;
+
+        videoBD.setCategoria(nCategoria);
+
+        this.categoria.set(nCategoria.getNome());
+
+        DAO.ACAO.atualizar(videoBD);
+    }
+
+    public void setSerieBD(projeto.modelos.Serie nSerie) {
+        serieBD = nSerie;
+
+        videoBD.setSerie(nSerie);
+
+        this.serie.set(nSerie.getNome());
+
+        DAO.ACAO.atualizar(videoBD);
+    }
+
 	public projeto.modelos.Video getVideoBD() {
 		return videoBD;
 	}

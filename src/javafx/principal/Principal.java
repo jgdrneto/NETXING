@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.principal.view.InicioOverviewController;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -52,12 +53,14 @@ public class Principal extends Application {
 		this.primaryStage = primaryStage;
 	    this.primaryStage.setTitle("Login - NETXING™");
 	    
+        this.primaryStage.getIcons().add(new Image("file:resources/Chingling_BW.gif"));
+
         showInicioOverview();
         
         Scene scene = new Scene(rootLayout);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        this.primaryStage.setScene(scene);
+        this.primaryStage.setResizable(false);
+        this.primaryStage.show();
         
 	}
 	

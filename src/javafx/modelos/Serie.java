@@ -15,6 +15,8 @@ public class Serie {
 		projeto.modelos.Serie serie = new projeto.modelos.Serie(nNome, NomeArquivo);
 		
 		DAO.ACAO.salvar(serie);
+
+        serieBD = serie;
 	}
 	
 	public Serie(projeto.modelos.Serie nSerie) {

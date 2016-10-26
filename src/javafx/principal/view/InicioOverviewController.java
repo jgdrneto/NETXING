@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -94,6 +95,7 @@ public class InicioOverviewController {
 			// Cria o palco stage.
 	        Stage stage = new Stage();
 	        stage.setTitle("Adminstrador");
+            stage.getIcons().add(new Image("file:resources/Chingling_BW.gif"));
 			
 	        //-----------------------------------------------------------------------
 	        FXMLLoader loaderAnchor = new FXMLLoader();
@@ -148,6 +150,7 @@ public class InicioOverviewController {
 	        
 	        stage.setScene(scene);
 	        stage.setTitle("Usuário");
+            stage.getIcons().add(new Image("file:resources/Chingling_BW.gif"));
 	        
 	        stage.setResizable(false);
 	        

@@ -89,8 +89,6 @@ public class CadCategoriaDialogController extends ControllerAdm{
 
         	javafx.modelos.Categoria c = new javafx.modelos.Categoria(nome.getText());
     			
-    		DAO.ACAO.salvar(c.getCategoriaBD());
-        		
         	this.getStage().close();    	
     	}
     	

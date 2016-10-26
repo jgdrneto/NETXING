@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.adm.tabelas.series.TabSerieController">
    <children>
-      <TableView fx:id="tb_Serie" layoutX="100.0" layoutY="80.0" onMouseClicked="#duploClique" prefHeight="500.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tb_Serie" layoutX="100.0" layoutY="80.0" onKeyPressed="#pressionarBotao" onMouseClicked="#duploClique" prefHeight="500.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="tb_Serie_Nome" minWidth="0.0" prefWidth="399.0" text="Nome da Serie" />
         </columns>
