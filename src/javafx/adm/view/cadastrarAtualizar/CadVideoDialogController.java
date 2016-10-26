@@ -128,7 +128,8 @@ public class CadVideoDialogController extends ControllerAdm{
 	    		video.setAtorPrincipal(atorPrincipal.getText());
 	    		video.setFaixaEtaria(idade.getValue());
 	    		video.setTemporada(temporada.getText());
-	    		
+                video.setSerieBD(series.getValue());
+                video.setCategoriaBD(categorias.getValue());
 	    		DAO.ACAO.atualizar(video.getVideoBD());
 
                 this.getStage().close();
