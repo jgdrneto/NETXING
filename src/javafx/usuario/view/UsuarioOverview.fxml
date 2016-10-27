@@ -16,49 +16,37 @@
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="638.0" prefWidth="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="66.0" layoutY="63.0" text="Início" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="63.0">
+                        <Label layoutX="73.0" layoutY="63.0" text="Início" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="63.0">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Button layoutX="38.0" layoutY="104.0" mnemonicParsing="false" text="Filmes" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="104.0">
+                        <Button layoutX="39.0" layoutY="106.0" mnemonicParsing="false" text="Séries" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="106.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="38.0" layoutY="158.0" mnemonicParsing="false" text="Séries" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="158.0">
+                        <Button layoutX="38.0" layoutY="162.0" mnemonicParsing="false" text="Vídeos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="162.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="38.0" layoutY="212.0" mnemonicParsing="false" text="Vídeos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="212.0">
+                        <Button layoutX="38.0" layoutY="215.0" mnemonicParsing="false" text="Favoritos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="38.0" layoutY="427.0" mnemonicParsing="false" text="Histórico" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
+                        <Button layoutX="128.0" layoutY="552.0" mnemonicParsing="false" text="Sair" AnchorPane.bottomAnchor="61.0" AnchorPane.rightAnchor="23.0" />
+                        <Button layoutX="50.0" layoutY="356.0" mnemonicParsing="false" text="Alterar dados">
                            <font>
                               <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="38.0" layoutY="373.0" mnemonicParsing="false" text="Em alta" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="38.0" layoutY="319.0" mnemonicParsing="false" text="Favoritos" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="42.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="109.0" layoutY="559.0" mnemonicParsing="false" text="Sair" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="18.0" />
-                        <Button layoutX="50.0" layoutY="517.0" mnemonicParsing="false" text="configurações" />
+                           </font></Button>
                         <Label layoutX="38.0" layoutY="14.0" text="NETXING">
                            <font>
                               <Font name="System Bold Italic" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="47.0" layoutY="280.0" text="Preferências">
+                        <Label layoutX="47.0" layoutY="300.0" text="Configurações">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -69,44 +57,19 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="tb_Filmes" layoutX="9.0" layoutY="42.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <TableView fx:id="tb_Videos" layoutX="10.0" layoutY="46.0" prefHeight="564.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <columns>
-                      <TableColumn fx:id="tb_Filmes_Nome" prefWidth="199.0" text="Nome" />
-                      <TableColumn fx:id="tb_Filmes_Categoria" prefWidth="186.0" text="Categoria" />
-                        <TableColumn fx:id="tb_Filmes_Ano" prefWidth="199.0" text="Ano" />
+                      <TableColumn fx:id="tb_Videos_Nome" prefWidth="166.0" text="Nome" />
+                        <TableColumn fx:id="tb_Videos_Serie" prefWidth="199.0" text="Serie" />
+                      <TableColumn fx:id="tb_Videos_Descricao" prefWidth="239.0" text="Descrição" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tb_Series" layoutX="10.0" layoutY="254.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-                    <columns>
-                      <TableColumn fx:id="tb_Series_Nome" prefWidth="295.0" text="Nome" />
-                        <TableColumn fx:id="tb_Series_Temporada" prefWidth="288.0" text="Temporada" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="tb_Videos" layoutX="10.0" layoutY="465.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-                    <columns>
-                      <TableColumn fx:id="tb_Videos_Nome" prefWidth="199.0" text="Nome" />
-                      <TableColumn fx:id="tb_Videos_Descricao" prefWidth="206.0" text="Descrição" />
-                        <TableColumn fx:id="tb_Videos_Categoria" prefWidth="179.0" text="Categoria" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="282.0" layoutY="15.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="282.0">
+                  <Label layoutX="281.0" layoutY="14.0" text="Vídeos mais assistidos" AnchorPane.leftAnchor="281.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="284.0" layoutY="225.0" text="Séries mais assistidas" AnchorPane.leftAnchor="284.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="281.0" layoutY="433.0" text="Vídeos mais assistidos" AnchorPane.leftAnchor="281.0">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="pesquisaFilmes" layoutX="21.0" layoutY="12.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
-                  <TextField fx:id="pesquisaSeries" layoutX="21.0" layoutY="222.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
-                  <TextField fx:id="pesquisaVideos" layoutX="21.0" layoutY="430.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField fx:id="pesquisaVideos" layoutX="21.0" layoutY="11.0" onKeyReleased="#pesquisarVideos" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
                </children>
             </AnchorPane>
         </items>

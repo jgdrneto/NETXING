@@ -2,55 +2,26 @@ package javafx.usuario.view;
 
 import java.util.List;
 
+import javafx.adm.view.cadastrarAtualizar.CadVideoDialogController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.modelos.Video;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import projeto.dao.DAO;
 
 public class UsuarioOverviewController {
 	
 	private Stage userStage;
-	
-	@FXML
-	private TextField pesquisaFilmes;
-	
-	@FXML
-	private TextField pesquisaSeries;
-	
+
 	@FXML
 	private TextField pesquisaVideos;
-	
-	//---------------------------------------------------------------------------
-	
-	@FXML
-	private TableView<javafx.modelos.Video> tb_Filmes;
-	
-	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Filmes_Nome;
-	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Filmes_Categoria;
-	@FXML
-	private TableColumn<javafx.modelos.Video, Number> tb_Filmes_Ano;
-	
-	private ObservableList<javafx.modelos.Video> filmesData = FXCollections.observableArrayList();
-
-	//---------------------------------------------------------------------------
-	
-	@FXML
-	private TableView<javafx.modelos.Video> tb_Series;
-	
-	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Series_Nome;
-	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Series_Temporada;
-			
-	private ObservableList<javafx.modelos.Video> seriesData = FXCollections.observableArrayList();
-
+		
 	//---------------------------------------------------------------------------
 		
 	@FXML
@@ -59,9 +30,9 @@ public class UsuarioOverviewController {
 	@FXML
 	private TableColumn<javafx.modelos.Video, String> tb_Videos_Nome;
 	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Videos_Descricao;
+	private TableColumn<javafx.modelos.Video, String> tb_Videos_Serie;
 	@FXML
-	private TableColumn<javafx.modelos.Video, String> tb_Videos_Categoria;
+	private TableColumn<javafx.modelos.Video, String> tb_Videos_Descricao;
 		
 	private ObservableList<javafx.modelos.Video> videosData = FXCollections.observableArrayList();
 	
@@ -70,7 +41,7 @@ public class UsuarioOverviewController {
 	public UsuarioOverviewController() {
 		
 		videosData = FXCollections.observableArrayList();
-		
+			
 		List<projeto.modelos.Video> listaVideoBD = DAO.ACAO.listar(projeto.modelos.Video.class);
 		
 		for(projeto.modelos.Video vdBD : listaVideoBD){
@@ -91,17 +62,11 @@ public class UsuarioOverviewController {
 	private void initialize() {
 		//Tabela de vídeos.
 		tb_Videos_Nome.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
+		tb_Videos_Serie.setCellValueFactory(cellData -> cellData.getValue().getSerieProperty());
 		tb_Videos_Descricao.setCellValueFactory(cellData -> cellData.getValue().getDescricaoProperty());
-		tb_Videos_Categoria.setCellValueFactory(cellData -> cellData.getValue().getCategoriaProperty());
-		
-		//Tabela de filmes.
-		tb_Filmes_Nome.setCellValueFactory(cellData -> cellData.getValue().getNomeProperty());
-		tb_Filmes_Categoria.setCellValueFactory(cellData -> cellData.getValue().getCategoriaProperty());
-		tb_Filmes_Ano.setCellValueFactory(cellData -> cellData.getValue().getAnoProperty());
-		
+
 		//Inicializando tabelas.
 		tb_Videos.setItems(videosData);
-		tb_Filmes.setItems(filmesData);
 	}
 	
 	//Pesquisar vídeos
@@ -132,20 +97,9 @@ public class UsuarioOverviewController {
 		return listaDePesquisa;
 	}
 	
+	
 	public ObservableList<javafx.modelos.Video> getVideosData() {
 		return videosData;
-	}
-	
-	
-	public ObservableList<javafx.modelos.Video> getFilmesData() {
-		return filmesData;
-	}
-	
-	
-	
-	
-	
-	
-	
+	}	
 
 }
