@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.usuario.view.UsuarioOverviewController">
    <children>
       <SplitPane dividerPositions="0.23782234957020057" layoutY="-2.0" prefHeight="600.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -69,24 +69,24 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="9.0" layoutY="42.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <TableView fx:id="tb_Filmes" layoutX="9.0" layoutY="42.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <columns>
-                      <TableColumn prefWidth="199.0" text="Nome" />
-                      <TableColumn prefWidth="186.0" text="Categoria" />
-                        <TableColumn prefWidth="199.0" text="Ano" />
+                      <TableColumn fx:id="tb_Filmes_Nome" prefWidth="199.0" text="Nome" />
+                      <TableColumn fx:id="tb_Filmes_Categoria" prefWidth="186.0" text="Categoria" />
+                        <TableColumn fx:id="tb_Filmes_Ano" prefWidth="199.0" text="Ano" />
                     </columns>
                   </TableView>
-                  <TableView layoutX="10.0" layoutY="254.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <TableView fx:id="tb_Series" layoutX="10.0" layoutY="254.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <columns>
-                      <TableColumn prefWidth="295.0" text="Nome" />
-                        <TableColumn prefWidth="288.0" text="Temporada" />
+                      <TableColumn fx:id="tb_Series_Nome" prefWidth="295.0" text="Nome" />
+                        <TableColumn fx:id="tb_Series_Temporada" prefWidth="288.0" text="Temporada" />
                     </columns>
                   </TableView>
-                  <TableView layoutX="10.0" layoutY="465.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <TableView fx:id="tb_Videos" layoutX="10.0" layoutY="465.0" prefHeight="163.0" prefWidth="585.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <columns>
-                      <TableColumn prefWidth="199.0" text="Nome" />
-                      <TableColumn prefWidth="206.0" text="Descrição" />
-                        <TableColumn prefWidth="179.0" text="Categoria" />
+                      <TableColumn fx:id="tb_Videos_Nome" prefWidth="199.0" text="Nome" />
+                      <TableColumn fx:id="tb_Videos_Descricao" prefWidth="206.0" text="Descrição" />
+                        <TableColumn fx:id="tb_Videos_Categoria" prefWidth="179.0" text="Categoria" />
                     </columns>
                   </TableView>
                   <Label layoutX="282.0" layoutY="15.0" text="Filmes mais assistidos" AnchorPane.leftAnchor="282.0">
@@ -104,9 +104,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="21.0" layoutY="12.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
-                  <TextField layoutX="21.0" layoutY="222.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
-                  <TextField layoutX="21.0" layoutY="430.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField fx:id="pesquisaFilmes" layoutX="21.0" layoutY="12.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField fx:id="pesquisaSeries" layoutX="21.0" layoutY="222.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
+                  <TextField fx:id="pesquisaVideos" layoutX="21.0" layoutY="430.0" prefHeight="25.0" prefWidth="235.0" promptText="Pesquisar" />
                </children>
             </AnchorPane>
         </items>

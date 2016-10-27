@@ -123,8 +123,8 @@ public class AdmOverviewController {
 	    tb_Usuario_Login.setCellValueFactory(cellData -> cellData.getValue().getLoginProperty());
 	    tb_Usuario_Senha.setCellValueFactory(cellData -> cellData.getValue().getSenhaProperty());
 	    tb_Usuario_Idade.setCellValueFactory(cellData -> cellData.getValue().getIdadeProperty());	  
+	    
 	    //inicializando tabelas
-	     
 	    tb_Videos.setItems(videosData);
 	    tb_Usuarios.setItems(usuariosData);
 	    
